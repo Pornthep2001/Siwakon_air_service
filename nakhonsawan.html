@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ผลงานแยกตามพื้นที่ - ศิวกรแอร์ เซอร์วิส</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ================= ตัวแปรสีหลัก ================= */
+        :root {
+            --primary-dark: #01172b;
+            --accent-blue: #0973ff;
+            --success-green: #28a745; 
+            --bg-light: #f4f7fe;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* ================= รีเซ็ตค่าพื้นฐาน ================= */
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: #333; line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .nav-logo { font-family: 'Chakra Petch', sans-serif; }
+
+        /* ================= Navbar ================= */
+        .navbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 8%; background: var(--primary-dark);
+            height: 80px; width: 100%; position: fixed; top: 0; z-index: 2000;
+        }
+
+        .nav-logo {
+            color: white; font-size: 24px; font-weight: 700; text-decoration: none;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .nav-logo img { height: 45px; }
+
+        .back-home {
+            color: white; text-decoration: none; font-size: 14px;
+            padding: 8px 20px; border: 1.5px solid rgba(255,255,255,0.3);
+            border-radius: 50px; transition: var(--transition);
+        }
+        .back-home:hover { background: white; color: var(--primary-dark); }
+
+        /* ================= ส่วนหัว Header ================= */
+        .page-header {
+            padding: 140px 8% 60px;
+            background: linear-gradient(135deg, var(--primary-dark), #0a3d62);
+            color: white; text-align: center;
+        }
+
+        .page-header h1 { font-size: clamp(26px, 5vw, 42px); margin-bottom: 15px; }
+        .page-header p { opacity: 0.8; font-size: 18px; max-width: 700px; margin: 0 auto; }
+
+        /* ================= รายการอำเภอและปุ่มตำบล ================= */
+        .container { padding: 60px 8%; max-width: 1300px; margin: 0 auto; }
+
+        .district-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+        }
+
+        .district-card {
+            background: var(--white); border-radius: 25px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #eee; display: flex; flex-direction: column;
+        }
+
+        /* หัวข้ออำเภอ */
+        .district-header {
+            background: #f8f9fa; padding: 20px 25px;
+            border-bottom: 1px solid #eee; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+        .district-header h3 { color: var(--primary-dark); font-size: 20px; }
+        .district-header .count {
+            font-size: 12px; background: var(--accent-blue); color: white;
+            padding: 2px 10px; border-radius: 10px;
+        }
+
+        /* ลิสต์ตำบลที่เป็นปุ่มกด */
+        .sub-district-grid {
+            padding: 20px; display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 คอลัมน์ */
+            gap: 12px;
+        }
+
+        .town-link {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 15px; background: #fff; border: 1px solid #edf2f7;
+            border-radius: 12px; text-decoration: none; color: #444;
+            font-size: 14px; transition: var(--transition);
+        }
+
+        .town-link i { color: var(--success-green); font-size: 14px; opacity: 0; transform: translateX(-5px); transition: 0.3s; }
+
+        /* เอฟเฟกต์เมื่อชี้ (Hover) */
+        .town-link:hover {
+            border-color: var(--accent-blue); background: #f0f7ff;
+            transform: translateY(-3px); box-shadow: 0 5px 15px rgba(9,115,255,0.1);
+            color: var(--accent-blue);
+        }
+
+        .town-link:hover i { opacity: 1; transform: translateX(0); }
+
+        /* ================= ส่วนปิดท้าย ================= */
+        .footer-note {
+            text-align: center; margin-top: 60px; padding: 50px 20px;
+            background: var(--primary-dark); border-radius: 30px; color: white;
+        }
+        .btn-call {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 35px; background: var(--accent-blue);
+            color: white; text-decoration: none; border-radius: 50px;
+            font-weight: 600; margin-top: 25px; transition: var(--transition);
+        }
+        .btn-call:hover { transform: scale(1.05); background: white; color: var(--primary-dark); }
+
+        /* ================= Responsive ================= */
+        @media (max-width: 850px) {
+            .container { padding: 40px 5%; }
+            .district-grid { grid-template-columns: 1fr; }
+            .navbar { padding: 0 5%; }
+            .nav-logo span { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <img src="IM/Adobe Express 2026-03-13 16.31.52.png" alt="Logo">
+            <span>ศิวกรแอร์ เซอร์วิส</span>
+        </a>
+        <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> กลับหน้าหลัก</a>
+    </nav>
+
+    <header class="page-header">
+        <i class="fas fa-award" style="font-size: 50px; color: var(--accent-blue); margin-bottom: 20px;"></i>
+        <h1>คลังผลงานและความไว้วางใจ</h1>
+        <p>เลือกคลิกแต่ละตำบล เพื่อดูภาพผลงานการให้บริการที่เราส่งมอบความเย็นให้ลูกค้าทั่วจังหวัดนครสวรรค์</p>
+    </header>
+
+    <main class="container">
+        
+        <div class="district-grid">
+
+            <div class="district-card">
+                <div class="district-header">
+                    <h3>อ.บรรพตพิสัย</h3>
+                    <span class="count">พื้นที่หลัก</span>
+                </div>
+                <div class="sub-district-grid">
+                    <a href="work-charoenphon.html" class="town-link"><span>ต.เจริญผล</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.ท่างิ้ว</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.บ้านแดน</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.บางตาหงาย</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.หูกวาง</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.ตาสัง</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.ด่านช้าง</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.หนองกรด</span> <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <div class="district-card">
+                <div class="district-header">
+                    <h3>อ.เมืองนครสวรรค์</h3>
+                    <span class="count">ครบทุกตำบล</span>
+                </div>
+                <div class="sub-district-grid">
+                    <a href="#" class="town-link"><span>ต.ปากน้ำโพ</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.วัดไทร</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.แควใหญ่</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.ตะเคียนเลื่อน</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.นครสวรรค์ตก</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.นครสวรรค์ออก</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.บางม่วง</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.หนองปลิง</span> <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <div class="district-card">
+                <div class="district-header">
+                    <h3>อ.เก้าเลี้ยว</h3>
+                    <span class="count">850+ เคส</span>
+                </div>
+                <div class="sub-district-grid">
+                    <a href="#" class="town-link"><span>ต.เก้าเลี้ยว</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.มหาโพธิ</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.หนองเต่า</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.เขาดิน</span> <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <div class="district-card">
+                <div class="district-header">
+                    <h3>อ.ลาดยาว</h3>
+                    <span class="count">ส่งงานแล้ว</span>
+                </div>
+                <div class="sub-district-grid">
+                    <a href="#" class="town-link"><span>ต.ลาดยาว</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.ศาลเจ้าไก่ต่อ</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.ห้วยน้ำหอม</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.สระแก้ว</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.มาบแก</span> <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <div class="district-card">
+                <div class="district-header">
+                    <h3>อ.ตาคลี</h3>
+                    <span class="count">ระยะไกลเราก็ไป</span>
+                </div>
+                <div class="sub-district-grid">
+                    <a href="#" class="town-link"><span>ต.ตาคลี</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.ช่องแค</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.จันเสน</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.พรหมนิมิต</span> <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <div class="district-card">
+                <div class="district-header">
+                    <h3>อ.พยุหะคีรี</h3>
+                    <span class="count">บริการด่วน</span>
+                </div>
+                <div class="sub-district-grid">
+                    <a href="#" class="town-link"><span>ต.พยุหะ</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.ท่าน้ำอ้อย</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.นิคมเขาบ่อแก้ว</span> <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="town-link"><span>ต.เขาทอง</span> <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <section class="footer-note">
+            <h2>ไม่พบตำบลของคุณ?</h2>
+            <p>เราให้บริการครอบคลุม 15 อำเภอในนครสวรรค์ หากตำบลของคุณไม่ได้อยู่ในรายการนี้ สามารถสอบถามเพื่อเช็คคิวงานได้ทันที</p>
+            <a href="tel:0631688547" class="btn-call">
+                <i class="fas fa-phone-alt"></i> สอบถามคิวงานในพื้นที่ของคุณ
+            </a>
+        </section>
+
+    </main>
+
+    <footer style="text-align: center; padding: 40px; color: #999; font-size: 13px;">
+        © 2026 Siwakon Air Service | ข้อมูลอัปเดตงานล่าสุด 16 มีนาคม 2026
+    </footer>
+
+</body>
+</html>
