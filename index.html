@@ -243,19 +243,46 @@
 
         /* ================= ตั้งค่าพิเศษสำหรับมือถือ (Responsive Updates) ================= */
         @media (max-width: 850px) {
-            .navbar { height: 70px; padding: 0 5%; } /* ลดความสูง Navbar บนมือถือ */
-            .menu { display: none; } /* ซ่อนเมนูตัวหนังสือบนมือถือ */
+            .navbar { 
+                height: auto; 
+                flex-direction: column; /* จัดโลโก้ไว้บน เมนูไว้ล่าง */
+                padding: 10px 5%;
+                gap: 10px;
+            }
+
+            .logo { font-size: 20px; }
+            .logo img { height: 40px; }
+
+            /* แก้ไขจุดนี้: ทำให้เมนูแสดงผลและเลื่อนปัดซ้าย-ขวาได้ */
+            .menu { 
+                display: flex !important; /* บังคับให้แสดงผล */
+                width: 100%; 
+                overflow-x: auto; /* เปิดการเลื่อนแนวนอน */
+                padding-bottom: 5px;
+                gap: 15px;
+                justify-content: flex-start;
+                scrollbar-width: none; /* ซ่อนแถบเลื่อน (Firefox) */
+            }
             
+            .menu::-webkit-scrollbar { display: none; } /* ซ่อนแถบเลื่อน (Chrome/Safari) */
+
+            .menu a { 
+                font-size: 16px; /* ปรับขนาดตัวอักษรให้พอดีมือถือ */
+                white-space: nowrap; /* ป้องกันตัวอักษรตัดบรรทัด */
+                padding: 5px 10px;
+                background: rgba(255,255,255,0.1); /* เพิ่มพื้นหลังจางๆ ให้ดูเป็นปุ่ม */
+                border-radius: 20px;
+            }
+
+            /* ปรับส่วน Hero และอื่น ๆ ให้เหมาะสม */
             .hero-content { grid-template-columns: 1fr; text-align: center; gap: 30px; }
-            .hero-image { order: -1; } /* ย้ายรูปมาไว้ด้านบนข้อความ */
-            .hero-image img { max-width: 280px; aspect-ratio: 1/1; } /* ปรับรูปเป็นจัตุรัสในมือถือ */
-            
+            .hero-image { order: -1; } 
+            .hero-image img { max-width: 280px; aspect-ratio: 1/1; }
             .hero-text h1 { font-size: 32px; }
             .hero-btns { justify-content: center; }
-            
-            .footer-container { text-align: center; } /* จัดตัวอักษร footer ให้อยู่กลาง */
+            .footer-container { text-align: center; }
             .footer-info p { justify-content: center; }
-            .map-container { height: 200px; width: 100%; } /* ปรับแผนที่ให้พอดีจอมือถือ */
+            .map-container { height: 200px; width: 100%; }
         }
     </style>
 </head>
