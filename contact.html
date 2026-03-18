@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ทีมช่างมืออาชีพ - ศิวกรแอร์ เซอร์วิส</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ================= ตัวแปรสีควบคุมธีม ================= */
+        :root {
+            --primary-dark: #01172b;
+            --accent-blue: #0973ff;
+            --intern-orange: #f39c12; /* สีสำหรับเด็กฝึกงาน */
+            --gold: #e0d3ce;
+            --white: #ffffff;
+            --bg-light: #f4f7fa;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --nav-height: 80px;
+        }
+
+        /* ================= รีเซ็ตค่ามาตรฐาน ================= */
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: #333; line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: var(--nav-height);
+        }
+
+        h1, h2, h3, .nav-logo { font-family: 'Chakra Petch', sans-serif; }
+
+        /* ================= Navbar (เหมือนหน้าหลัก) ================= */
+        .navbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 5%; background: var(--primary-dark);
+            height: var(--nav-height); width: 100%; position: fixed;
+            top: 0; z-index: 2000; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-logo {
+            color: white; font-size: 20px; font-weight: 700; text-decoration: none;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .nav-logo img { height: 45px; }
+
+        .back-home {
+            color: white; text-decoration: none; font-size: 14px;
+            padding: 8px 20px; border: 1.5px solid rgba(255,255,255,0.3);
+            border-radius: 50px; transition: var(--transition);
+        }
+        .back-home:hover { background: white; color: var(--primary-dark); }
+
+        /* ================= ส่วนหัว Header ================= */
+        .team-header {
+            padding: 60px 8% 80px;
+            background: linear-gradient(135deg, var(--primary-dark), #0a3d62);
+            color: white; text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        }
+
+        .team-header h1 { font-size: clamp(28px, 5vw, 42px); margin-bottom: 15px; }
+        .section-divider {
+            text-align: center; margin: 60px 0 40px; 
+            font-size: 28px; color: var(--primary-dark);
+            position: relative;
+        }
+        .section-divider::after {
+            content: ''; display: block; width: 80px; height: 4px;
+            background: var(--accent-blue); margin: 10px auto; border-radius: 2px;
+        }
+
+        /* ================= Team Grid Layout ================= */
+        .container { padding: 40px 8% 80px; max-width: 1300px; margin: 0 auto; }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        /* การ์ดพนักงาน */
+        .staff-card {
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid #eee;
+            text-align: center;
+            position: relative;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(9,115,255,0.15);
+        }
+
+        /* หัวหน้าช่าง */
+        .staff-card.leader {
+            grid-column: 1 / -1;
+            max-width: 450px;
+            margin: 0 auto 30px;
+            border: 2.5px solid var(--accent-blue);
+        }
+        .staff-card.leader::before {
+            content: 'HEAD OF TEAM';
+            position: absolute; top: 15px; right: -35px;
+            background: var(--accent-blue); color: white;
+            padding: 5px 40px; transform: rotate(45deg);
+            font-size: 11px; font-weight: 700; z-index: 5;
+        }
+
+        /* รูปพนักงาน */
+        .staff-img-box { width: 100%; height: 320px; overflow: hidden; background: #eee; }
+        .staff-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s ease; }
+        .staff-card:hover .staff-img-box img { transform: scale(1.08); }
+
+        .staff-info { padding: 25px; }
+        .staff-info h3 { color: var(--primary-dark); font-size: 20px; margin-bottom: 5px; }
+        .staff-info span { color: var(--accent-blue); font-weight: 600; font-size: 14px; display: block; margin-bottom: 15px; }
+        
+        .view-more {
+            display: inline-block; padding: 8px 20px;
+            background: #f8f9fa; color: #555;
+            text-decoration: none; border-radius: 50px;
+            font-size: 13px; font-weight: 600; border: 1px solid #ddd;
+            transition: 0.3s;
+        }
+        .staff-card:hover .view-more { background: var(--primary-dark); color: white; border-color: var(--primary-dark); }
+
+        /* การ์ดเด็กฝึกงาน (ขนาดเล็กลงเล็กน้อย) */
+        .intern-card { border-top: 5px solid var(--intern-orange); }
+        .intern-card .staff-img-box { height: 260px; }
+        .intern-card span { color: var(--intern-orange); }
+        .intern-badge {
+            background: var(--intern-orange); color: white;
+            padding: 3px 12px; border-radius: 50px; font-size: 11px;
+            position: absolute; top: 15px; left: 15px; font-weight: 700;
+        }
+
+        /* ================= Responsive ================= */
+        @media (max-width: 850px) {
+            .navbar { padding: 0 15px; }
+            .nav-logo span { display: none; }
+            .container { padding: 20px 5%; }
+            .team-header { padding-top: 110px; }
+            .staff-card.leader { max-width: 100%; }
+            .team-grid { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <img src="IM/Adobe Express 2026-03-13 16.31.52.png" alt="Logo">
+            <span>ศิวกรแอร์ เซอร์วิส</span>
+        </a>
+        <a href="index.html" class="back-home"><i class="fas fa-home"></i> กลับหน้าหลัก</a>
+    </nav>
+
+    <header class="team-header">
+        <i class="fas fa-users-cog" style="font-size: 50px; color: var(--accent-blue); margin-bottom: 20px;"></i>
+        <h1>Professional Service Team</h1>
+        <p>ทีมงานคุณภาพที่ผ่านการคัดสรรและฝึกอบรมอย่างดี เพื่อความพึงพอใจสูงสุดของลูกค้า</p>
+    </header>
+
+    <main class="container">
+        
+        <h2 class="section-divider">ทีมช่างเทคนิคหลัก</h2>
+        
+        <div class="team-grid">
+            <div class="staff-card leader">
+                <div class="staff-img-box">
+                    <img src="IM/173657_0.jpg" alt="ช่างเอ">
+                </div>
+                <div class="staff-info">
+                    <h3>ช่างเอ (ศิวกร)</h3>
+                    <span>Chief Engineer & Owner</span>
+                    <p style="font-size: 13px; color: #888; margin-bottom: 15px;">ประสบการณ์ 10+ ปี เชี่ยวชาญระบบแอร์โรงงานและบ้าน</p>
+                    <a href="staff-1.html" class="view-more">ดูประวัติส่วนตัว</a>
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <div class="staff-img-box">
+                    <img src="https://images.unsplash.com/photo-1621905252507-b354bc2d1854?q=80&w=2070" alt="ช่างเอนก">
+                </div>
+                <div class="staff-info">
+                    <h3>ช่างเอนก</h3>
+                    <span>Senior Technician</span>
+                    <p style="font-size: 13px; color: #888; margin-bottom: 15px;">เชี่ยวชาญงานซ่อมบอร์ดและระบบ Inverter</p>
+                    <a href="#" class="view-more">ข้อมูลเพิ่มเติม</a>
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <div class="staff-img-box">
+                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974" alt="ช่างมานะ">
+                </div>
+                <div class="staff-info">
+                    <h3>ช่างมานะ</h3>
+                    <span>Assistant Leader</span>
+                    <p style="font-size: 13px; color: #888; margin-bottom: 15px;">ผู้ช่วยหัวหน้าทีม แม่นยำงานติดตั้งระบบไฟฟ้า</p>
+                    <a href="#" class="view-more">ข้อมูลเพิ่มเติม</a>
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <div class="staff-img-box">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974" alt="ช่างสมชาย">
+                </div>
+                <div class="staff-info">
+                    <h3>ช่างสมชาย</h3>
+                    <span>Service specialist</span>
+                    <p style="font-size: 13px; color: #888; margin-bottom: 15px;">ผู้เชี่ยวชาญงานล้างและทำความสะอาดฆ่าเชื้อ</p>
+                    <a href="#" class="view-more">ข้อมูลเพิ่มเติม</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-divider">ทีมเด็กฝึกงาน (Internship)</h2>
+        
+        <div class="team-grid">
+            <div class="staff-card intern-card">
+                <div class="intern-badge">INTERN 01</div>
+                <div class="staff-img-box">
+                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1974" alt="Intern 1">
+                </div>
+                <div class="staff-info">
+                    <h3>น้องบาส</h3>
+                    <span>Trainee Technician</span>
+                    <a href="#" class="view-more">ผลงานการฝึก</a>
+                </div>
+            </div>
+
+            <div class="staff-card intern-card">
+                <div class="intern-badge">INTERN 02</div>
+                <div class="staff-img-box">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974" alt="Intern 2">
+                </div>
+                <div class="staff-info">
+                    <h3>น้องนนท์</h3>
+                    <span>Trainee Technician</span>
+                    <a href="#" class="view-more">ผลงานการฝึก</a>
+                </div>
+            </div>
+
+            <div class="staff-card intern-card">
+                <div class="intern-badge">INTERN 03</div>
+                <div class="staff-img-box">
+                    <img src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?q=80&w=2130" alt="Intern 3">
+                </div>
+                <div class="staff-info">
+                    <h3>น้องภูมิ</h3>
+                    <span>Trainee Technician</span>
+                    <a href="#" class="view-more">ผลงานการฝึก</a>
+                </div>
+            </div>
+
+            <div class="staff-card intern-card">
+                <div class="intern-badge">INTERN 04</div>
+                <div class="staff-img-box">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974" alt="Intern 4">
+                </div>
+                <div class="staff-info">
+                    <h3>น้องกันต์</h3>
+                    <span>Trainee Technician</span>
+                    <a href="#" class="view-more">ผลงานการฝึก</a>
+                </div>
+            </div>
+
+            <div class="staff-card intern-card">
+                <div class="intern-badge">INTERN 05</div>
+                <div class="staff-img-box">
+                    <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=2048" alt="Intern 5">
+                </div>
+                <div class="staff-info">
+                    <h3>น้องไอซ์</h3>
+                    <span>Trainee Technician</span>
+                    <a href="#" class="view-more">ผลงานการฝึก</a>
+                </div>
+            </div>
+
+            <div class="staff-card intern-card">
+                <div class="intern-badge">INTERN 06</div>
+                <div class="staff-img-box">
+                    <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?q=80&w=1964" alt="Intern 6">
+                </div>
+                <div class="staff-info">
+                    <h3>น้องเกม</h3>
+                    <span>Trainee Technician</span>
+                    <a href="#" class="view-more">ผลงานการฝึก</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 60px; text-align: center; background: white; padding: 40px; border-radius: 30px; border: 1px dashed var(--accent-blue);">
+            <h2 style="color: var(--primary-dark); margin-bottom: 15px;">การันตีความปลอดภัยและคุณภาพ</h2>
+            <p style="color: #666;">พนักงานทุุกคนผ่านการตรวจสอบประวัติอาชญากรรม และสวมชุดยูนิฟอร์มสุภาพเรียบร้อยทุุกครั้งที่ออกปฏิบัติงาน</p>
+        </div>
+
+    </main>
+
+    <footer style="text-align: center; padding: 40px; color: #999; font-size: 13px;">
+        © 2026 Siwakon Air Service | Our Professional Team Update 2026
+    </footer>
+
+</body>
+</html>
