@@ -3,135 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ผลงานแยกตามพื้นที่ - ศิวกรแอร์ เซอร์วิส</title>
+    <title>พื้นที่ให้บริการทุกตำบล นครสวรรค์ 2026 - ศิวกรแอร์</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ================= ตัวแปรสีหลัก ================= */
         :root {
-            --primary-dark: #01172b;
-            --accent-blue: #0973ff;
-            --success-green: #28a745; 
-            --bg-light: #f4f7fe;
+            --primary-dark: #020817;
+            --accent-blue: #00eaff;
+            --win-blue: #0973ff;
+            --glass-bg: rgba(15, 23, 42, 0.9);
             --white: #ffffff;
-            --transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transition: all 0.3s ease;
         }
 
-        /* ================= รีเซ็ตค่าพื้นฐาน ================= */
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            font-family: 'Prompt', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-light);
-            color: #333; line-height: 1.6;
-            overflow-x: hidden;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Prompt', sans-serif; }
+        body { background-color: var(--primary-dark); color: var(--white); overflow-x: hidden; padding-top: 70px; }
         h1, h2, h3, .nav-logo { font-family: 'Chakra Petch', sans-serif; }
 
-        /* ================= Navbar ================= */
+        /* Navbar */
         .navbar {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 8%; background: var(--primary-dark);
-            height: 80px; width: 100%; position: fixed; top: 0; z-index: 2000;
+            padding: 0 5%; background: rgba(1, 23, 43, 0.95);
+            height: 70px; width: 100%; position: fixed; top: 0; z-index: 2000;
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-logo { color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; }
+        .nav-logo img { height: 40px; }
+
+        /* Dashboard Layout */
+        .dashboard-container {
+            display: grid; 
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 20px; padding: 20px 5%; 
+            max-width: 1600px; margin: 0 auto;
         }
 
-        .nav-logo {
-            color: white; font-size: 24px; font-weight: 700; text-decoration: none;
-            display: flex; align-items: center; gap: 10px;
-        }
-        .nav-logo img { height: 45px; }
-
-        .back-home {
-            color: white; text-decoration: none; font-size: 14px;
-            padding: 8px 20px; border: 1.5px solid rgba(255,255,255,0.3);
-            border-radius: 50px; transition: var(--transition);
-        }
-        .back-home:hover { background: white; color: var(--primary-dark); }
-
-        /* ================= ส่วนหัว Header ================= */
-        .page-header {
-            padding: 140px 8% 60px;
-            background: linear-gradient(135deg, var(--primary-dark), #0a3d62);
-            color: white; text-align: center;
+        /* แผนที่ SVG */
+        .map-card {
+            background: var(--glass-bg); border-radius: 25px; border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px; position: relative; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            height: fit-content;
         }
 
-        .page-header h1 { font-size: clamp(26px, 5vw, 42px); margin-bottom: 15px; }
-        .page-header p { opacity: 0.8; font-size: 18px; max-width: 700px; margin: 0 auto; }
+        .svg-map { width: 100%; height: auto; filter: drop-shadow(0 0 15px rgba(0, 234, 255, 0.1)); }
 
-        /* ================= รายการอำเภอและปุ่มตำบล ================= */
-        .container { padding: 60px 8%; max-width: 1300px; margin: 0 auto; }
-
-        .district-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 30px;
+        .district-poly {
+            fill: #1e293b; stroke: rgba(255,255,255,0.2);
+            stroke-width: 1; transition: var(--transition);
+            cursor: pointer;
         }
 
-        .district-card {
-            background: var(--white); border-radius: 25px; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid #eee; display: flex; flex-direction: column;
+        .district-poly:hover, .district-poly.selected {
+            fill: var(--win-blue) !important;
+            stroke: var(--accent-blue);
+            stroke-width: 2;
+            filter: drop-shadow(0 0 10px var(--accent-blue));
         }
 
-        /* หัวข้ออำเภอ */
-        .district-header {
-            background: #f8f9fa; padding: 20px 25px;
-            border-bottom: 1px solid #eee; display: flex;
-            justify-content: space-between; align-items: center;
-        }
-        .district-header h3 { color: var(--primary-dark); font-size: 20px; }
-        .district-header .count {
-            font-size: 12px; background: var(--accent-blue); color: white;
-            padding: 2px 10px; border-radius: 10px;
+        .map-label {
+            font-family: 'Chakra Petch'; font-size: 12px;
+            fill: rgba(255,255,255,0.6); font-weight: 600;
+            pointer-events: none; text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* ลิสต์ตำบลที่เป็นปุ่มกด */
-        .sub-district-grid {
-            padding: 20px; display: grid;
-            grid-template-columns: 1fr 1fr; /* 2 คอลัมน์ */
-            gap: 12px;
+        /* รายชื่ออำเภอ Sidebar */
+        .side-panel { display: flex; flex-direction: column; gap: 20px; }
+
+        .district-list-wrapper {
+            background: var(--glass-bg); border-radius: 25px; padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1); 
+            max-height: 400px; overflow-y: auto;
         }
 
-        .town-link {
+        .district-item-btn {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 12px 15px; background: #fff; border: 1px solid #edf2f7;
-            border-radius: 12px; text-decoration: none; color: #444;
-            font-size: 14px; transition: var(--transition);
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+            padding: 12px 15px; border-radius: 12px; cursor: pointer;
+            margin-bottom: 8px; transition: var(--transition); color: white;
         }
 
-        .town-link i { color: var(--success-green); font-size: 14px; opacity: 0; transform: translateX(-5px); transition: 0.3s; }
-
-        /* เอฟเฟกต์เมื่อชี้ (Hover) */
-        .town-link:hover {
-            border-color: var(--accent-blue); background: #f0f7ff;
-            transform: translateY(-3px); box-shadow: 0 5px 15px rgba(9,115,255,0.1);
-            color: var(--accent-blue);
+        .district-item-btn:hover, .district-item-btn.active-btn {
+            background: var(--win-blue); transform: translateX(5px);
         }
 
-        .town-link:hover i { opacity: 1; transform: translateX(0); }
-
-        /* ================= ส่วนปิดท้าย ================= */
-        .footer-note {
-            text-align: center; margin-top: 60px; padding: 50px 20px;
-            background: var(--primary-dark); border-radius: 30px; color: white;
+        /* แผงแสดงตำบล (Sub-district Panel) */
+        .sub-district-panel {
+            background: rgba(0, 234, 255, 0.05);
+            border-radius: 25px; padding: 25px;
+            border: 1px solid var(--accent-blue);
+            min-height: 300px;
         }
-        .btn-call {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 16px 35px; background: var(--accent-blue);
-            color: white; text-decoration: none; border-radius: 50px;
-            font-weight: 600; margin-top: 25px; transition: var(--transition);
-        }
-        .btn-call:hover { transform: scale(1.05); background: white; color: var(--primary-dark); }
 
-        /* ================= Responsive ================= */
-        @media (max-width: 850px) {
-            .container { padding: 40px 5%; }
-            .district-grid { grid-template-columns: 1fr; }
-            .navbar { padding: 0 5%; }
+        .town-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 10px; margin-top: 15px;
+        }
+
+        .town-tag {
+            background: rgba(255,255,255,0.05);
+            padding: 8px; border-radius: 8px;
+            font-size: 13px; text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 992px) {
+            .dashboard-container { grid-template-columns: 1fr; }
             .nav-logo span { display: none; }
         }
     </style>
@@ -143,121 +125,115 @@
             <img src="IM/Adobe Express 2026-03-13 16.31.52.png" alt="Logo">
             <span>ศิวกรแอร์ เซอร์วิส</span>
         </a>
-        <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> กลับหน้าหลัก</a>
+        <div style="font-size: 12px; color: var(--accent-blue); font-weight: bold;">
+            <i class="fas fa-circle" style="animation: blink 1s infinite;"></i> LIVE COVERAGE 2026
+        </div>
     </nav>
 
-    <header class="page-header">
-        <i class="fas fa-award" style="font-size: 50px; color: var(--accent-blue); margin-bottom: 20px;"></i>
-        <h1>คลังผลงานและความไว้วางใจ</h1>
-        <p>เลือกคลิกแต่ละตำบล เพื่อดูภาพผลงานการให้บริการที่เราส่งมอบความเย็นให้ลูกค้าทั่วจังหวัดนครสวรรค์</p>
-    </header>
-
-    <main class="container">
+    <div class="dashboard-container">
         
-        <div class="district-grid">
-
-            <div class="district-card">
-                <div class="district-header">
-                    <h3>อ.บรรพตพิสัย</h3>
-                    <span class="count">พื้นที่หลัก</span>
-                </div>
-                <div class="sub-district-grid">
-                    <a href="work-charoenphon.html" class="town-link"><span>ต.เจริญผล</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.ท่างิ้ว</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.บ้านแดน</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.บางตาหงาย</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.หูกวาง</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.ตาสัง</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.ด่านช้าง</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.หนองกรด</span> <i class="fas fa-chevron-right"></i></a>
-                </div>
+        <section class="map-section">
+            <div class="map-card">
+                <h3 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fas fa-map-marked-alt"></i> แผนที่สรุปงานนครสวรรค์</h3>
+                
+                <svg class="svg-map" viewBox="0 0 600 500">
+                    <g class="map-region" data-id="banphot"><path id="poly-banphot" class="district-poly" d="M180,50 L320,40 L360,120 L300,180 L200,190 L140,140 Z" /><text x="195" y="115" class="map-label">บรรพตพิสัย</text></g>
+                    <g class="map-region" data-id="mueang"><path id="poly-mueang" class="district-poly" d="M300,180 L420,160 L480,250 L420,350 L300,380 L250,280 Z" /><text x="335" y="275" class="map-label">อ.เมือง</text></g>
+                    <g class="map-region" data-id="kaoliao"><path id="poly-kaoliao" class="district-poly" d="M280,120 L360,120 L380,160 L300,180 Z" /><text x="310" y="150" class="map-label" style="font-size: 10px;">เก้าเลี้ยว</text></g>
+                    <g class="map-region" data-id="latyao"><path id="poly-latyao" class="district-poly" d="M80,200 L200,190 L250,280 L180,350 L50,300 Z" /><text x="125" y="275" class="map-label">ลาดยาว</text></g>
+                    <g class="map-region" data-id="chumsaeng"><path id="poly-chumsaeng" class="district-poly" d="M360,40 L480,60 L520,160 L420,160 L360,120 Z" /><text x="410" y="105" class="map-label">ชุมแสง</text></g>
+                    <g class="map-region" data-id="takhli"><path id="poly-takhli" class="district-poly" d="M400,350 L550,300 L580,450 L450,480 Z" /><text x="480" y="410" class="map-label">ตาคลี</text></g>
+                    <g class="map-region" data-id="phayuha"><path id="poly-phayuha" class="district-poly" d="M250,380 L400,350 L420,450 L300,480 Z" /><text x="310" y="430" class="map-label">พยุหะคีรี</text></g>
+                    <g class="map-region" data-id="tha-tako"><path id="poly-tha-tako" class="district-poly" d="M420,160 L550,150 L580,250 L480,250 Z" /><text x="480" y="200" class="map-label">ท่าตะโก</text></g>
+                </svg>
             </div>
-
-            <div class="district-card">
-                <div class="district-header">
-                    <h3>อ.เมืองนครสวรรค์</h3>
-                    <span class="count">ครบทุกตำบล</span>
-                </div>
-                <div class="sub-district-grid">
-                    <a href="#" class="town-link"><span>ต.ปากน้ำโพ</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.วัดไทร</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.แควใหญ่</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.ตะเคียนเลื่อน</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.นครสวรรค์ตก</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.นครสวรรค์ออก</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.บางม่วง</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.หนองปลิง</span> <i class="fas fa-chevron-right"></i></a>
-                </div>
-            </div>
-
-            <div class="district-card">
-                <div class="district-header">
-                    <h3>อ.เก้าเลี้ยว</h3>
-                    <span class="count">850+ เคส</span>
-                </div>
-                <div class="sub-district-grid">
-                    <a href="#" class="town-link"><span>ต.เก้าเลี้ยว</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.มหาโพธิ</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.หนองเต่า</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.เขาดิน</span> <i class="fas fa-chevron-right"></i></a>
-                </div>
-            </div>
-
-            <div class="district-card">
-                <div class="district-header">
-                    <h3>อ.ลาดยาว</h3>
-                    <span class="count">ส่งงานแล้ว</span>
-                </div>
-                <div class="sub-district-grid">
-                    <a href="#" class="town-link"><span>ต.ลาดยาว</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.ศาลเจ้าไก่ต่อ</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.ห้วยน้ำหอม</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.สระแก้ว</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.มาบแก</span> <i class="fas fa-chevron-right"></i></a>
-                </div>
-            </div>
-
-            <div class="district-card">
-                <div class="district-header">
-                    <h3>อ.ตาคลี</h3>
-                    <span class="count">ระยะไกลเราก็ไป</span>
-                </div>
-                <div class="sub-district-grid">
-                    <a href="#" class="town-link"><span>ต.ตาคลี</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.ช่องแค</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.จันเสน</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.พรหมนิมิต</span> <i class="fas fa-chevron-right"></i></a>
-                </div>
-            </div>
-
-            <div class="district-card">
-                <div class="district-header">
-                    <h3>อ.พยุหะคีรี</h3>
-                    <span class="count">บริการด่วน</span>
-                </div>
-                <div class="sub-district-grid">
-                    <a href="#" class="town-link"><span>ต.พยุหะ</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.ท่าน้ำอ้อย</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.นิคมเขาบ่อแก้ว</span> <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" class="town-link"><span>ต.เขาทอง</span> <i class="fas fa-chevron-right"></i></a>
-                </div>
-            </div>
-
-        </div>
-
-        <section class="footer-note">
-            <h2>ไม่พบตำบลของคุณ?</h2>
-            <p>เราให้บริการครอบคลุม 15 อำเภอในนครสวรรค์ หากตำบลของคุณไม่ได้อยู่ในรายการนี้ สามารถสอบถามเพื่อเช็คคิวงานได้ทันที</p>
-            <a href="tel:0631688547" class="btn-call">
-                <i class="fas fa-phone-alt"></i> สอบถามคิวงานในพื้นที่ของคุณ
-            </a>
         </section>
 
-    </main>
+        <aside class="side-panel">
+            <div class="district-list-wrapper">
+                <p style="color: var(--accent-blue); margin-bottom: 10px; font-weight: 700; font-size: 14px;">คลิกเลือกอำเภอเพื่อดูตำบล</p>
+                <div class="district-list">
+                    <div class="district-item-btn" data-target="banphot"><span>อ.บรรพตพิสัย</span><i class="fas fa-chevron-right"></i></div>
+                    <div class="district-item-btn" data-target="mueang"><span>อ.เมืองนครสวรรค์</span><i class="fas fa-chevron-right"></i></div>
+                    <div class="district-item-btn" data-target="kaoliao"><span>อ.เก้าเลี้ยว</span><i class="fas fa-chevron-right"></i></div>
+                    <div class="district-item-btn" data-target="latyao"><span>อ.ลาดยาว</span><i class="fas fa-chevron-right"></i></div>
+                    <div class="district-item-btn" data-target="chumsaeng"><span>อ.ชุมแสง</span><i class="fas fa-chevron-right"></i></div>
+                    <div class="district-item-btn" data-target="takhli"><span>อ.ตาคลี</span><i class="fas fa-chevron-right"></i></div>
+                    <div class="district-item-btn" data-target="phayuha"><span>อ.พยุหะคีรี</span><i class="fas fa-chevron-right"></i></div>
+                    <div class="district-item-btn" data-target="tha-tako"><span>อ.ท่าตะโก</span><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
 
-    <footer style="text-align: center; padding: 40px; color: #999; font-size: 13px;">
-        © 2026 Siwakon Air Service | ข้อมูลอัปเดตงานล่าสุด 16 มีนาคม 2026
-    </footer>
+            <div class="sub-district-panel" id="town-panel">
+                <h4 id="district-title" style="color: var(--accent-blue);">เลือกอำเภอเพื่อดูประวัติงาน</h4>
+                <div class="town-grid" id="town-list">
+                    <p style="font-size: 12px; opacity: 0.5;">ข้อมูลตำบลจะปรากฏที่นี่เมื่อคุณเลือกพื้นที่...</p>
+                </div>
+            </div>
+        </aside>
+    </div>
 
+    <script>
+        // ข้อมูลตำบลทุกอำเภอในนครสวรรค์ (ตัวอย่าง)
+        const nakhonSawanData = {
+            "banphot": ["เจริญผล", "ท่างิ้ว", "บ้านแดน", "บางตาหงาย", "หูกวาง", "ตาสัง", "ด่านช้าง", "หนองกรด", "บางแก้ว"],
+            "mueang": ["ปากน้ำโพ", "วัดไทร", "แควใหญ่", "ตะเคียนเลื่อน", "นครสวรรค์ตก", "นครสวรรค์ออก", "บางม่วง", "หนองปลิง", "เกรียงไกร", "บ้านมะเกลือ"],
+            "kaoliao": ["เก้าเลี้ยว", "มหาโพธิ", "หนองเต่า", "เขาทอง", "เขาดิน"],
+            "latyao": ["ลาดยาว", "หนองยาว", "หนองนมวัว", "ห้วยน้ำหอม", "มาบแก", "ศาลเจ้าไก่ต่อ", "สระแก้ว"],
+            "chumsaeng": ["ชุมแสง", "ทับกฤช", "พิกุล", "เกยไชย", "ท่าไม้", "บางไผ่", "หนองกระเจา"],
+            "takhli": ["ตาคลี", "ช่องแค", "จันเสน", "ห้วยหอม", "หนองโพ", "หนองหม้อ", "พรหมนิมิต"],
+            "phayuha": ["พยุหะ", "เนินมะกอก", "ท่าน้ำอ้อย", "ม่วงหัก", "ยางขาว", "นิคมเขาบ่อแก้ว"],
+            "tha-tako": ["ท่าตะโก", "พนมรอก", "หัวถนน", "สายลำโพง", "วังมหากัน", "วังใหญ่"]
+        };
+
+        const buttons = document.querySelectorAll('.district-item-btn');
+        const paths = document.querySelectorAll('.district-poly');
+        const townList = document.getElementById('town-list');
+        const districtTitle = document.getElementById('district-title');
+
+        function updateDisplay(id) {
+            // 1. จัดการฝั่งปุ่ม
+            buttons.forEach(b => {
+                b.classList.remove('active-btn');
+                if(b.getAttribute('data-target') === id) b.classList.add('active-btn');
+            });
+
+            // 2. จัดการฝั่งแผนที่
+            paths.forEach(p => {
+                p.classList.remove('selected');
+                if(p.id === 'poly-' + id) p.classList.add('selected');
+            });
+
+            // 3. แสดงชื่อตำบล
+            districtTitle.innerHTML = `<i class="fas fa-city"></i> อ. ${document.querySelector(`[data-target="${id}"] span`).innerText}`;
+            townList.innerHTML = "";
+            const towns = nakhonSawanData[id] || ["ไม่มีข้อมูล"];
+            towns.forEach(town => {
+                const tag = document.createElement('div');
+                tag.className = 'town-tag';
+                tag.innerHTML = `<i class="fas fa-check-circle" style="color:var(--accent-blue)"></i> ต.${town}`;
+                townList.appendChild(tag);
+            });
+        }
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                updateDisplay(btn.getAttribute('data-target'));
+            });
+        });
+
+        paths.forEach(path => {
+            path.addEventListener('click', () => {
+                updateDisplay(path.id.replace('poly-', ''));
+            });
+        });
+
+        // เริ่มต้นที่บรรพตพิสัย
+        window.onload = () => updateDisplay('banphot');
+    </script>
+
+    <style>
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+    </style>
 </body>
 </html>
