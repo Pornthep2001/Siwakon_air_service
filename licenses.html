@@ -11,13 +11,13 @@
     <style>
         /* ================= ตัวแปรสีและค่าคงที่ ================= */
         :root {
-            --primary-blue: #01172b;    /* สีน้ำเงินเข้ม */
-            --accent-blue: #0973ff;     /* สีฟ้าสดใส */
-            --gold: #e0d3ce;            /* สีครีมทอง */
+            --primary-blue: #01172b;    /* สีน้ำเงินเข้ม */
+            --accent-blue: #0973ff;     /* สีฟ้าสดใส */
+            --gold: #e0d3ce;            /* สีครีมทอง */
             --white: #ffffff;
             --light-bg: #f8fbff;
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            --nav-height: 80px;         /* ความสูงเมนู */
+            --nav-height: 100px;        /* ความสูงเมนู */
         }
 
         /* ================= รีเซ็ตค่าพื้นฐาน ================= */
@@ -30,33 +30,58 @@
             background-color: var(--light-bg);
             color: #333; line-height: 1.6;
             overflow-x: hidden;
-            padding-top: var(--nav-height); /* เว้นที่ให้เนื้อหาไม่จมใต้เมนู */
+            padding-top: var(--nav-height); 
         }
 
-        h1, h2, h3, .nav-logo { font-family: 'Chakra Petch', sans-serif; }
+        h1, h2, h3, .logo { font-family: 'Chakra Petch', sans-serif; }
 
-        /* ================= Navbar (เหมือนหน้าหลัก) ================= */
+        /* ================= แถบเมนูด้านบน (Navbar) เหมือนหน้าแรก ================= */
         .navbar {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 5%; background: var(--primary-blue);
-            height: var(--nav-height); width: 100%; position: fixed; top: 0; z-index: 2000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 0 8%;
+            background: rgba(15, 76, 129, 0.95);
+            backdrop-filter: blur(15px);
+            position: fixed; top: 0; width: 100%;
+            height: var(--nav-height); z-index: 2000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
         }
 
-        .nav-logo {
-            color: white; font-size: 20px; font-weight: 700; text-decoration: none;
-            display: flex; align-items: center; gap: 10px;
+        .logo {
+            display: flex; align-items: center; gap: 12px;
+            color: white; font-size: 24px; font-weight: 700; text-decoration: none;
         }
-        .nav-logo img { height: 45px; }
 
-        .back-home {
-            color: white; text-decoration: none; font-size: 14px;
-            padding: 8px 16px; border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 50px; transition: var(--transition);
+        .logo img { height: 50px; width: auto; }
+
+        .menu { display: flex; gap: 30px; align-items: center; }
+
+        .menu a {
+            color: rgba(255, 255, 255, 0.8); text-decoration: none;
+            font-size: 18px; font-weight: 500; transition: var(--transition);
         }
-        .back-home:hover { background: white; color: var(--primary-blue); }
 
-        /* ================= ส่วนหัวข้อ Hero (ปรับปรุง) ================= */
+        .menu a:hover { color: var(--gold); }
+
+        /* Dropdown (Rich Menu) */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content {
+            display: none; position: absolute; background-color: #ffffff;
+            min-width: 220px; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            z-index: 3000; top: 100%; left: 0; border-radius: 12px;
+            padding: 10px 0; overflow: hidden;
+        }
+        .dropdown-content a {
+            color: #333 !important; padding: 12px 20px !important;
+            font-size: 15px !important; display: flex !important;
+            align-items: center; gap: 10px; background: transparent !important;
+            border-radius: 0 !important;
+        }
+        .dropdown-content a i { color: var(--accent-blue); width: 20px; }
+        .dropdown-content a:hover { background-color: #f0f7ff !important; color: var(--accent-blue) !important; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* ================= ส่วนหัวข้อ Hero ================= */
         .page-header {
             padding: 60px 8% 50px;
             background: linear-gradient(135deg, var(--primary-blue), #0a3d62);
@@ -65,7 +90,7 @@
         .page-header i { font-size: 50px; color: var(--accent-blue); margin-bottom: 15px; }
         .page-header h1 { font-size: clamp(26px, 5vw, 42px); margin-bottom: 10px; }
 
-        /* ================= ส่วนเนื้อหาหลัก (Licenses Section) ================= */
+        /* ================= ส่วนเนื้อหาหลัก ================= */
         .content-section { padding: 60px 8%; max-width: 1300px; margin: 0 auto; }
 
         .section-intro { text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; }
@@ -73,7 +98,6 @@
         .section-intro h2::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--accent-blue); }
         .section-intro p { color: #666; font-size: 16px; margin-top: 15px; }
 
-        /* การจัดวางแบบ Grid สำหรับใบอนุญาตและใบประกาศ */
         .license-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px; margin-bottom: 80px;
@@ -86,73 +110,77 @@
         }
         .license-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(9,115,255,0.1); border-color: var(--accent-blue); }
 
-        /* หัวข้อสีฟ้าสดใส */
         .card-header {
             padding: 15px 25px; border-bottom: 1px solid #f0f0f0;
             color: var(--accent-blue); font-weight: 700; font-size: 18px;
             text-transform: uppercase; letter-spacing: 0.5px;
         }
 
-        /* ส่วนแสดงรูปภาพใบอนุญาต */
-        .card-image {
-            width: 100%; height: auto; padding: 15px;
-            background: #fff;
-        }
-        .card-image img {
-            width: 100%; height: auto;
-            border: 2px solid #edf2f7; border-radius: 12px;
-            transition: var(--transition); display: block;
-        }
+        .card-image { width: 100%; height: auto; padding: 15px; background: #fff; }
+        .card-image img { width: 100%; height: auto; border: 2px solid #edf2f7; border-radius: 12px; display: block; }
 
-        /* ส่วนรายละเอียดข้อความ */
         .card-body { padding: 25px; }
         .card-body h3 { color: var(--primary-blue); font-size: 21px; margin-bottom: 15px; }
         .card-body p { font-size: 15px; color: #666; margin-bottom: 20px; }
 
-        /* รายการจุดเด่น */
         .info-list { list-style: none; margin-bottom: 25px; }
-        .info-list li {
-            display: flex; align-items: center; gap: 10px;
-            margin-bottom: 12px; font-weight: 500; font-size: 14px;
-        }
+        .info-list li { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-weight: 500; font-size: 14px; }
         .info-list li i { color: #28a745; font-size: 16px; }
 
-        /* ส่วนผู้ออกใบอนุญาต */
-        .issuer-box {
-            display: flex; align-items: center; gap: 12px;
-            padding: 15px; background: #f9fbfd; border-radius: 10px;
-            font-size: 13px; color: #777;
-        }
+        .issuer-box { display: flex; align-items: center; gap: 12px; padding: 15px; background: #f9fbfd; border-radius: 10px; font-size: 13px; color: #777; }
         .issuer-box i { font-size: 18px; color: #888; }
 
-        /* ================= ส่วนความปลอดภัย (Trust Footer) ================= */
-        .trust-box {
-            text-align: center; margin-top: 60px; padding: 50px;
-            background: var(--white); border-radius: 25px;
-            border: 2px solid #e1eefb;
-        }
+        .trust-box { text-align: center; margin-top: 60px; padding: 50px; background: var(--white); border-radius: 25px; border: 2px solid #e1eefb; }
         .trust-box i { font-size: 45px; color: #c5a059; margin-bottom: 20px; }
         .trust-box h2 { font-size: 28px; color: var(--primary-blue); margin-bottom: 15px; }
         .trust-box p { color: #555; max-width: 600px; margin: 0 auto; }
 
-        /* ================= Responsive ================= */
+        /* ================= Responsive สำหรับมือถือ ================= */
         @media (max-width: 850px) {
-            .navbar { padding: 0 15px; }
-            .nav-logo span { display: none; }
-            .container { padding: 40px 5%; }
+            .navbar { height: auto; flex-direction: column; padding: 10px 5%; gap: 10px; }
+            .logo { font-size: 20px; }
+            .logo img { height: 40px; }
+            .menu { 
+                display: flex !important; width: 100%; overflow-x: auto;
+                padding-bottom: 8px; gap: 12px; justify-content: flex-start;
+                scrollbar-width: none;
+            }
+            .menu::-webkit-scrollbar { display: none; }
+            .menu a { font-size: 15px; white-space: nowrap; padding: 6px 12px; background: rgba(255,255,255,0.1); border-radius: 20px; }
+            .dropdown:hover .dropdown-content { display: none; }
+            
+            .content-section { padding: 40px 5%; }
             .license-grid { grid-template-columns: 1fr; }
-            .page-header { padding-top: 120px; }
+            .page-header { padding-top: 40px; }
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="nav-logo">
+        <a href="index.html" class="logo">
             <img src="IM/Adobe Express 2026-03-13 16.31.52.png" alt="Logo">
             <span>ศิวกรแอร์ เซอร์วิส</span>
         </a>
-        <a href="index.html" class="back-home"><i class="fas fa-home"></i> หน้าหลัก</a>
+        <div class="menu">
+            <a href="index.html">หน้าแรก</a>
+            
+            <div class="dropdown">
+                <a href="#" class="dropbtn">บริการ <i class="fas fa-chevron-down" style="font-size: 12px; margin-left: 5px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="service-install.html"><i class="fas fa-snowflake"></i> ติดตั้งแอร์ใหม่</a>
+                    <a href="service-clean.html"><i class="fas fa-pump-soap"></i> ล้างแอร์ฆ่าเชื้อ</a>
+                    <a href="service-repair.html"><i class="fas fa-tools"></i> ซ่อมบำรุงด่วน</a>
+                    <a href="service-electric.html"><i class="fas fa-bolt"></i> งานระบบไฟฟ้า</a>
+                    <a href="service-cctv.html"><i class="fas fa-video"></i> กล้องวงจรปิด</a>
+                    <a href="service-parts.html"><i class="fas fa-box-open"></i> จำหน่ายอะไหล่</a>
+                </div>
+            </div>
+
+            <a href="nakhonsawan.html">พื้นที่บริการ</a>
+            <a href="licenses.html" style="color: var(--gold);">ใบอนุญาต</a>
+            <a href="contact.html">ข้อมูลทีมช่าง</a>
+        </div>
     </nav>
 
     <header class="page-header">

@@ -18,7 +18,7 @@
             --white: #ffffff;
             --bg-light: #f4f7fa;
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            --nav-height: 80px;
+            --nav-height: 100px; /* ความสูงเมนูสำหรับ Desktop */
         }
 
         /* ================= รีเซ็ตค่ามาตรฐาน ================= */
@@ -34,28 +34,52 @@
             padding-top: var(--nav-height);
         }
 
-        h1, h2, h3, .nav-logo { font-family: 'Chakra Petch', sans-serif; }
+        h1, h2, h3, .logo { font-family: 'Chakra Petch', sans-serif; }
 
-        /* ================= Navbar (เหมือนหน้าหลัก) ================= */
+        /* ================= แถบเมนูด้านบน (Navbar) เหมือนหน้าแรก ================= */
         .navbar {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 5%; background: var(--primary-dark);
-            height: var(--nav-height); width: 100%; position: fixed;
-            top: 0; z-index: 2000; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 0 8%;
+            background: rgba(15, 76, 129, 0.95);
+            backdrop-filter: blur(15px);
+            position: fixed; top: 0; width: 100%;
+            height: var(--nav-height); z-index: 2000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
         }
 
-        .nav-logo {
-            color: white; font-size: 20px; font-weight: 700; text-decoration: none;
-            display: flex; align-items: center; gap: 10px;
+        .logo {
+            display: flex; align-items: center; gap: 12px;
+            color: white; font-size: 24px; font-weight: 700; text-decoration: none;
         }
-        .nav-logo img { height: 45px; }
 
-        .back-home {
-            color: white; text-decoration: none; font-size: 14px;
-            padding: 8px 20px; border: 1.5px solid rgba(255,255,255,0.3);
-            border-radius: 50px; transition: var(--transition);
+        .logo img { height: 50px; width: auto; }
+
+        .menu { display: flex; gap: 30px; align-items: center; }
+
+        .menu a {
+            color: rgba(255, 255, 255, 0.8); text-decoration: none;
+            font-size: 18px; font-weight: 500; transition: var(--transition);
         }
-        .back-home:hover { background: white; color: var(--primary-dark); }
+
+        .menu a:hover { color: var(--gold); }
+
+        /* Dropdown (Rich Menu) */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content {
+            display: none; position: absolute; background-color: #ffffff;
+            min-width: 220px; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            z-index: 3000; top: 100%; left: 0; border-radius: 12px;
+            padding: 10px 0; overflow: hidden;
+        }
+        .dropdown-content a {
+            color: #333 !important; padding: 12px 20px !important;
+            font-size: 15px !important; display: flex !important;
+            align-items: center; gap: 10px; background: transparent !important;
+        }
+        .dropdown-content a i { color: var(--accent-blue); width: 20px; }
+        .dropdown-content a:hover { background-color: #f0f7ff !important; color: var(--accent-blue) !important; }
+        .dropdown:hover .dropdown-content { display: block; }
 
         /* ================= ส่วนหัว Header ================= */
         .team-header {
@@ -135,7 +159,7 @@
         }
         .staff-card:hover .view-more { background: var(--primary-dark); color: white; border-color: var(--primary-dark); }
 
-        /* การ์ดเด็กฝึกงาน (ขนาดเล็กลงเล็กน้อย) */
+        /* การ์ดเด็กฝึกงาน */
         .intern-card { border-top: 5px solid var(--intern-orange); }
         .intern-card .staff-img-box { height: 260px; }
         .intern-card span { color: var(--intern-orange); }
@@ -147,10 +171,19 @@
 
         /* ================= Responsive ================= */
         @media (max-width: 850px) {
-            .navbar { padding: 0 15px; }
-            .nav-logo span { display: none; }
+            .navbar { height: auto; flex-direction: column; padding: 10px 5%; gap: 10px; }
+            .logo { font-size: 20px; }
+            .menu { 
+                display: flex !important; width: 100%; overflow-x: auto;
+                padding-bottom: 8px; gap: 12px; justify-content: flex-start;
+                scrollbar-width: none;
+            }
+            .menu::-webkit-scrollbar { display: none; }
+            .menu a { font-size: 15px; white-space: nowrap; padding: 6px 12px; background: rgba(255,255,255,0.1); border-radius: 20px; }
+            .dropdown:hover .dropdown-content { display: none; }
+            
             .container { padding: 20px 5%; }
-            .team-header { padding-top: 110px; }
+            .team-header { padding-top: 10px; } /* ลด Padding เพราะ Navbar ตัวเล็กลง */
             .staff-card.leader { max-width: 100%; }
             .team-grid { gap: 20px; }
         }
@@ -158,12 +191,30 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="index.html" class="nav-logo">
+    <nav class="navbar" id="mainNavbar">
+        <a href="index.html" class="logo">
             <img src="IM/Adobe Express 2026-03-13 16.31.52.png" alt="Logo">
             <span>ศิวกรแอร์ เซอร์วิส</span>
         </a>
-        <a href="index.html" class="back-home"><i class="fas fa-home"></i> กลับหน้าหลัก</a>
+        <div class="menu">
+            <a href="index.html">หน้าแรก</a>
+            
+            <div class="dropdown">
+                <a href="#" class="dropbtn">บริการ <i class="fas fa-chevron-down" style="font-size: 12px; margin-left: 5px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="service-install.html"><i class="fas fa-snowflake"></i> ติดตั้งแอร์ใหม่</a>
+                    <a href="service-clean.html"><i class="fas fa-pump-soap"></i> ล้างแอร์ฆ่าเชื้อ</a>
+                    <a href="service-repair.html"><i class="fas fa-tools"></i> ซ่อมบำรุงด่วน</a>
+                    <a href="service-electric.html"><i class="fas fa-bolt"></i> งานระบบไฟฟ้า</a>
+                    <a href="service-cctv.html"><i class="fas fa-video"></i> กล้องวงจรปิด</a>
+                    <a href="service-parts.html"><i class="fas fa-box-open"></i> จำหน่ายอะไหล่</a>
+                </div>
+            </div>
+
+            <a href="nakhonsawan.html">พื้นที่บริการ</a>
+            <a href="licenses.html">ใบอนุญาต</a>
+            <a href="contact.html" style="color: var(--gold);">ข้อมูลทีมช่าง</a>
+        </div>
     </nav>
 
     <header class="team-header">
@@ -312,6 +363,20 @@
     <footer style="text-align: center; padding: 40px; color: #999; font-size: 13px;">
         © 2026 Siwakon Air Service | Our Professional Team Update 2026
     </footer>
+
+    <script>
+        // เปลี่ยนขนาดแถบเมนูเมื่อเลื่อนหน้าจอเหมือนหน้า Index
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('mainNavbar');
+            if (window.scrollY > 50) {
+                nav.style.height = '70px';
+                nav.style.background = 'rgba(8, 27, 58, 0.98)';
+            } else {
+                nav.style.height = '100px';
+                nav.style.background = 'rgba(15, 76, 129, 0.95)';
+            }
+        });
+    </script>
 
 </body>
 </html>
