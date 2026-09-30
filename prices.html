@@ -96,6 +96,29 @@
         .filter-pill:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
         .filter-pill.active { background: var(--primary-blue); border-color: var(--primary-blue); color: white; }
 
+        .category-heading {
+            max-width: 1100px; margin: 45px auto 0; padding: 0 8%;
+            color: var(--primary-blue); text-align: center;
+            font-size: clamp(24px, 4vw, 34px);
+        }
+
+        .used-air-section { padding: 0 8% 80px; max-width: 1100px; margin: 0 auto; }
+        .used-air-card {
+            padding: 45px 30px; border: 1px solid #e2e8f0; border-radius: 24px;
+            background: linear-gradient(135deg, #f4f8fd, #ffffff); text-align: center;
+        }
+        .used-air-card > i { color: var(--accent-blue); font-size: 38px; margin-bottom: 15px; }
+        .used-air-card h2 { color: var(--primary-blue); font-size: clamp(24px, 4vw, 32px); margin-bottom: 12px; }
+        .used-air-card p { max-width: 680px; margin: 0 auto 22px; color: #667085; }
+        .used-air-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+        .used-air-actions a {
+            display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+            border-radius: 50px; background: var(--primary-blue); color: white;
+            text-decoration: none; font-weight: 600; transition: var(--transition);
+        }
+        .used-air-actions a:hover { background: var(--accent-blue); transform: translateY(-2px); }
+        .used-air-actions a.line-link { background: #06c755; }
+
         /* ================= กริดการ์ดรุ่นแอร์ (Model Grid) ================= */
         .model-section { padding: 30px 8% 100px; max-width: 1300px; margin: 0 auto; }
 
@@ -272,7 +295,13 @@
                     <a href="service-parts.html"><i class="fas fa-box-open"></i> จำหน่ายอะไหล่</a>
                 </div>
             </div>
-            <a href="prices.html" class="active">ราคาติดตั้งแอร์</a>
+            <div class="dropdown">
+                <a href="#new-air" class="dropbtn active">ราคาติดตั้งแอร์ <i class="fas fa-chevron-down" style="font-size: 12px; margin-left: 5px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="#new-air"><i class="fas fa-snowflake"></i> แอร์ใหม่</a>
+                    <a href="#used-air"><i class="fas fa-recycle"></i> แอร์มือสอง</a>
+                </div>
+            </div>
             <a href="licenses.html">ใบอนุญาตประกอบวิชาชีพ</a>
             <a href="contact.html">ข้อมูลช่าง</a>
         </div>
@@ -284,6 +313,8 @@
         <p>เลือกยี่ห้อและรุ่นที่สนใจ แตะที่การ์ดเพื่อดูราคาติดตั้งแยกตามขนาด BTU แบบละเอียด</p>
     </section>
 
+    <h2 class="category-heading" id="new-air">แอร์ใหม่พร้อมติดตั้ง</h2>
+
     <div class="filter-bar" id="filterBar">
         <!-- ปุ่มกรองยี่ห้อจะถูกสร้างขึ้นอัตโนมัติจากข้อมูลใน airPriceData -->
     </div>
@@ -291,6 +322,18 @@
     <section class="model-section">
         <div class="model-grid" id="modelGrid">
             <!-- การ์ดรุ่นแอร์จะถูกสร้างขึ้นอัตโนมัติจากข้อมูลใน airPriceData -->
+        </div>
+    </section>
+
+    <section class="used-air-section" id="used-air">
+        <div class="used-air-card">
+            <i class="fas fa-recycle" aria-hidden="true"></i>
+            <h2>แอร์มือสอง</h2>
+            <p>สอบถามรุ่นและราคาปัจจุบันได้โดยตรง ราคาขึ้นอยู่กับยี่ห้อ รุ่น ขนาด BTU และสภาพของเครื่อง</p>
+            <div class="used-air-actions">
+                <a href="tel:0631688547"><i class="fas fa-phone" aria-hidden="true"></i> โทรสอบถาม</a>
+                <a href="https://lin.ee/RElZnJy" target="_blank" rel="noopener" class="line-link"><i class="fab fa-line" aria-hidden="true"></i> สอบถามทาง LINE</a>
+            </div>
         </div>
     </section>
 

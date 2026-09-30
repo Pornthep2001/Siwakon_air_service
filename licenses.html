@@ -99,8 +99,8 @@
         .section-intro p { color: #666; font-size: 16px; margin-top: 15px; }
 
         .license-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px; margin-bottom: 80px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px; margin-bottom: 80px;
         }
 
         .license-card {
@@ -117,7 +117,21 @@
         }
 
         .card-image { width: 100%; height: auto; padding: 15px; background: #fff; }
-        .card-image img { width: 100%; height: auto; border: 2px solid #edf2f7; border-radius: 12px; display: block; }
+        .card-image img {
+            width: 100%; height: 280px; object-fit: contain;
+            border: 2px solid #edf2f7; border-radius: 12px; display: block;
+            background: #f8fbff;
+            transition: transform 0.3s ease;
+        }
+        .card-image-link { display: block; position: relative; border-radius: 12px; overflow: hidden; cursor: zoom-in; }
+        .card-image-link::after {
+            content: 'คลิกเพื่อดูภาพขนาดเต็ม'; position: absolute; inset: auto 0 0;
+            padding: 9px 12px; color: white; text-align: center; font-size: 13px;
+            background: rgba(1, 23, 43, 0.78); opacity: 0; transition: opacity 0.25s ease;
+        }
+        .card-image-link:hover::after, .card-image-link:focus-visible::after { opacity: 1; }
+        .card-image-link:hover img { transform: scale(1.025); }
+        .card-image-link:focus-visible { outline: 3px solid var(--accent-blue); outline-offset: 3px; }
 
         .card-body { padding: 25px; }
         .card-body h3 { color: var(--primary-blue); font-size: 21px; margin-bottom: 15px; }
@@ -176,7 +190,13 @@
                     <a href="service-parts.html"><i class="fas fa-box-open"></i> จำหน่ายอะไหล่</a>
                 </div>
             </div>
-            <a href="prices.html">ราคาติดตั้งแอร์</a>
+            <div class="dropdown">
+                <a href="prices.html#new-air" class="dropbtn">ราคาติดตั้งแอร์ <i class="fas fa-chevron-down" style="font-size: 12px; margin-left: 5px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="prices.html#new-air"><i class="fas fa-snowflake"></i> แอร์ใหม่</a>
+                    <a href="prices.html#used-air"><i class="fas fa-recycle"></i> แอร์มือสอง</a>
+                </div>
+            </div>
             <a href="licenses.html" style="color: var(--gold);">ใบอนุญาต</a>
             <a href="contact.html">ข้อมูลทีมช่าง</a>
         </div>
@@ -185,66 +205,119 @@
     <header class="page-header">
         <i class="fas fa-certificate"></i>
         <h1>ใบอนุญาตและมาตรฐานวิชาชีพ</h1>
-        <p>ยกระดับความเชื่อมั่น ด้วยมาตรฐานการทำงานที่ถูกต้องตามกฎหมายและได้รับการรับรองจากสถาบันชั้นนำ</p>
+        <p>รวบรวมใบทะเบียน เกียรติบัตร และประกาศนียบัตรการอบรมกับมาตรฐานฝีมือแรงงานของทีมงาน</p>
     </header>
 
     <main class="content-section">
         
         <div class="section-intro">
             <h2>มาตรฐานที่ลูกค้าไว้วางใจ</h2>
-            <p>ศิวกรแอร์ เซอร์วิส มุ่งเน้นการให้บริการด้วยทีมช่างที่มีความเชี่ยวชาญ ได้รับใบอนุญาตประกอบวิชาชีพอย่างถูกต้องตามกฎหมาย 100% เพื่อให้ท่านมั่นใจในคุณภาพและความปลอดภัยสูงสุด</p>
+            <p>ตรวจสอบเอกสารการจดทะเบียนและหลักฐานการอบรมของร้านและช่าง เพื่อประกอบการพิจารณาก่อนเลือกใช้บริการ</p>
         </div>
 
         <div class="license-grid">
-
             <div class="license-card">
-                <div class="card-header">ใบอนุญาต โรงเรียน</div>
+                <div class="card-header">ทะเบียนพาณิชย์</div>
                 <div class="card-image">
-                    <img src="IM/IMG20251227132041.jpg" alt="ใบอนุญาตให้จัดตั้งโรงเรียน">
+                    <a class="card-image-link" href="IM/S__58867736_0.jpg" target="_blank" rel="noopener" aria-label="เปิดภาพใบทะเบียนพาณิชย์ขนาดเต็มในแท็บใหม่">
+                        <img src="IM/S__58867736_0.jpg" alt="ใบทะเบียนพาณิชย์ ร้านศิวกรแอร์ เซอร์วิส" loading="lazy">
+                    </a>
                 </div>
                 <div class="card-body">
-                    <h3>ใบอนุญาตประกอบกิจการ</h3>
+                    <h3>ใบทะเบียนพาณิชย์ร้านศิวกรแอร์ เซอร์วิส</h3>
                     <ul class="info-list">
-                        <li><i class="fas fa-check-circle"></i> ได้รับอนุญาตจากหน่วยงานที่เกี่ยวข้อง</li>
-                        <li><i class="fas fa-check-circle"></i> มาตรฐานการปฏิบัติงานที่ชัดเจน</li>
-                        <li><i class="fas fa-check-circle"></i> ผ่านการตรวจสอบและรับรองครบถ้วน</li>
+                        <li><i class="fas fa-check-circle"></i> จดทะเบียนพาณิชย์กับเทศบาลตำบลบรรพตพิสัย</li>
+                        <li><i class="fas fa-check-circle"></i> ประเภทธุรกิจ: จำหน่ายเครื่องใช้ไฟฟ้าชนิดใช้ในครัวเรือน</li>
+                        <li><i class="fas fa-check-circle"></i> ที่ตั้ง: อำเภอบรรพตพิสัย จังหวัดนครสวรรค์</li>
                     </ul>
-                    <div class="issuer-box">
-                        <i class="fas fa-building"></i> <span>ผู้ออกใบอนุญาต: กรมโรงงานอุตสาหกรรม / หน่วยงานท้องถิ่น</span>
-                    </div>
+                    <div class="issuer-box"><i class="fas fa-building"></i> <span>สำนักงานทะเบียนพาณิชย์ เทศบาลตำบลบรรพตพิสัย</span></div>
                 </div>
             </div>
 
             <div class="license-card">
-                <div class="card-header">ใบประกาศนียบัตร</div>
+                <div class="card-header">มาตรฐานฝีมือแรงงาน</div>
                 <div class="card-image">
-                    <img src="IM/IMG20251228144217.jpg" alt="ใบประกาศนียบัตรช่างไฟฟ้า">
+                    <a class="card-image-link" href="IM/S__58867735_0.jpg" target="_blank" rel="noopener" aria-label="เปิดภาพหนังสือรับรองมาตรฐานฝีมือแรงงานขนาดเต็มในแท็บใหม่">
+                        <img src="IM/S__58867735_0.jpg" alt="หนังสือรับรองมาตรฐานฝีมือแรงงานช่างไฟฟ้าภายในอาคาร ระดับ 1" loading="lazy">
+                    </a>
                 </div>
                 <div class="card-body">
-                    <h3>ใบประกอบอาชีพช่างแอร์/ไฟฟ้า</h3>
+                    <h3>ช่างไฟฟ้าภายในอาคาร ระดับ 1</h3>
                     <ul class="info-list">
-                        <li><i class="fas fa-check-circle"></i> หลักสูตรได้รับการรับรองอย่างเป็นทางการ</li>
-                        <li><i class="fas fa-check-circle"></i> ผ่านการทดสอบฝีมือแรงงานแห่งชาติ</li>
-                        <li><i class="fas fa-check-circle"></i> เชี่ยวชาญเฉพาะทางทุุกขั้นตอน</li>
+                        <li><i class="fas fa-check-circle"></i> ผ่านการทดสอบมาตรฐานฝีมือแรงงานแห่งชาติ</li>
+                        <li><i class="fas fa-check-circle"></i> สาขาช่างไฟฟ้าภายในอาคาร ระดับ 1</li>
+                        <li><i class="fas fa-check-circle"></i> ออกให้วันที่ 10 กุมภาพันธ์ พ.ศ. 2566</li>
                     </ul>
-                    <div class="issuer-box">
-                        <i class="fas fa-graduation-cap"></i> <span>ผู้ออกใบประกาศ: กระทรวงแรงงาน / กรมพัฒนาฝีมือแรงงาน</span>
-                    </div>
+                    <div class="issuer-box"><i class="fas fa-building"></i> <span>กรมพัฒนาฝีมือแรงงาน โดยสถาบันพัฒนาฝีมือแรงงาน 8 นครสวรรค์</span></div>
                 </div>
             </div>
 
+            <div class="license-card">
+                <div class="card-header">เกียรติบัตรสถานประกอบการ</div>
+                <div class="card-image">
+                    <a class="card-image-link" href="IM/S__58867734_0.jpg" target="_blank" rel="noopener" aria-label="เปิดภาพเกียรติบัตรสถานประกอบการขนาดเต็มในแท็บใหม่">
+                        <img src="IM/S__58867734_0.jpg" alt="เกียรติบัตรร้านศิวกรแอร์เซอร์วิสจากวิทยาลัยการอาชีพบรรพตพิสัย" loading="lazy">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h3>ร่วมส่งเสริมการจัดการอาชีวศึกษา</h3>
+                    <ul class="info-list">
+                        <li><i class="fas fa-check-circle"></i> มอบให้ร้านศิวกร แอร์เซอร์วิส</li>
+                        <li><i class="fas fa-check-circle"></i> ร่วมโครงการส่งเสริมการจัดการอาชีวศึกษาระบบทวิภาคี</li>
+                        <li><i class="fas fa-check-circle"></i> ออกให้วันที่ 1 กันยายน พ.ศ. 2567</li>
+                    </ul>
+                    <div class="issuer-box"><i class="fas fa-graduation-cap"></i> <span>วิทยาลัยการอาชีพบรรพตพิสัย</span></div>
+                </div>
+            </div>
+
+            <div class="license-card">
+                <div class="card-header">อบรมผลิตภัณฑ์ Haier · 2567</div>
+                <div class="card-image">
+                    <a class="card-image-link" href="IM/S__58867733_0.jpg" target="_blank" rel="noopener" aria-label="เปิดภาพประกาศนียบัตร Haier ปี 2567 ขนาดเต็มในแท็บใหม่">
+                        <img src="IM/S__58867733_0.jpg" alt="ประกาศนียบัตรอบรมความรู้ผลิตภัณฑ์และการแก้ไขปัญหาเครื่องปรับอากาศ Haier ปี 2567" loading="lazy">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h3>ความรู้ผลิตภัณฑ์และการแก้ไขปัญหาแอร์</h3>
+                    <ul class="info-list">
+                        <li><i class="fas fa-check-circle"></i> ผ่านหลักสูตรความรู้ผลิตภัณฑ์และการแก้ไขปัญหาเครื่องปรับอากาศ</li>
+                        <li><i class="fas fa-check-circle"></i> ผู้เข้าอบรม: คุณธนกร คงโชติ</li>
+                        <li><i class="fas fa-check-circle"></i> วันที่ 16 สิงหาคม พ.ศ. 2567</li>
+                    </ul>
+                    <div class="issuer-box"><i class="fas fa-certificate"></i> <span>Haier Electrical Appliances (Thailand) Co., Ltd.</span></div>
+                </div>
+            </div>
+
+            <div class="license-card">
+                <div class="card-header">อบรมผลิตภัณฑ์ Haier · 2568</div>
+                <div class="card-image">
+                    <a class="card-image-link" href="IM/S__58867737_0.jpg" target="_blank" rel="noopener" aria-label="เปิดภาพประกาศนียบัตร Haier ปี 2568 ขนาดเต็มในแท็บใหม่">
+                        <img src="IM/S__58867737_0.jpg" alt="ประกาศนียบัตรอบรม RAC และ LCAC จาก Haier ปี 2568" loading="lazy">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h3>อบรมความรู้ผลิตภัณฑ์ RAC &amp; LCAC</h3>
+                    <ul class="info-list">
+                        <li><i class="fas fa-check-circle"></i> ผ่านการอบรมความรู้สินค้าและการแก้ไขปัญหาเครื่องปรับอากาศ</li>
+                        <li><i class="fas fa-check-circle"></i> ผู้เข้าอบรม: คุณธนกร คงโชติ</li>
+                        <li><i class="fas fa-check-circle"></i> วันที่ 15 สิงหาคม พ.ศ. 2568</li>
+                    </ul>
+                    <div class="issuer-box"><i class="fas fa-certificate"></i> <span>Haier Electrical Appliances (Thailand) Co., Ltd.</span></div>
+                </div>
+            </div>
         </div>
 
         <section class="trust-box">
             <i class="fas fa-user-shield"></i>
-            <h2>ทำงานอย่างมืออาชีพ ปลอดภัย 100%</h2>
-            <p>เรามุ่งเน้นการให้บริการภายใต้มาตรฐานสากลและกฎหมายแรงงาน เพื่อให้ลูกค้ามั่นใจในคุณภาพ และสามารถตรวจสอบได้เสมอทุุกขั้นตอน</p>
+            <h2>พัฒนาความรู้และทักษะอย่างต่อเนื่อง</h2>
+            <p>ทีมงานพัฒนาความรู้และทักษะอย่างต่อเนื่อง ทั้งการอบรมผลิตภัณฑ์เครื่องปรับอากาศและการทดสอบมาตรฐานฝีมือแรงงาน</p>
         </section>
 
     </main>
 
     <footer style="text-align: center; padding: 40px; color: #aaa; font-size: 13px;">
-        © 2026 Siwakon Air Service | ข้อมูลใบอนุญาตอัปเดตล่าสุด 16 มีนาคม 2026
+    <footer style="text-align: center; padding: 40px; color: #aaa; font-size: 13px;">
+        © 2026 Siwakon Air Service | เอกสารทะเบียนและหลักฐานการอบรม
     </footer>
 
 </body>
