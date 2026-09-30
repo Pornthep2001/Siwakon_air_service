@@ -272,6 +272,243 @@
             .map-container { height: 200px; width: 100%; }
             .modal-box { max-height: 92vh; border-radius: 20px; }
         }
+
+        /* ================= ปรับดีไซน์ให้สมดุลทุกขนาดหน้าจอ ================= */
+        :root {
+            --nav-height: 88px;
+            --page-bg: #f5f8fc;
+            --ink: #102a43;
+            --muted: #64748b;
+        }
+
+        html { scroll-padding-top: calc(var(--nav-height) + 18px); }
+        body { background: var(--page-bg); color: var(--ink); }
+
+        .navbar {
+            height: var(--nav-height); padding: 0 clamp(18px, 5vw, 72px); gap: 28px;
+            background: rgba(5, 31, 56, 0.94); box-shadow: 0 8px 28px rgba(1, 23, 43, 0.16);
+        }
+        .navbar.scrolled { height: 74px; background: rgba(5, 31, 56, 0.98); }
+        .logo { flex-shrink: 0; gap: 10px; font-size: clamp(18px, 2vw, 25px); }
+        .logo img { height: 54px; }
+        .menu { gap: clamp(12px, 1.8vw, 26px); }
+        .menu > a, .menu > .dropdown > .dropbtn {
+            display: inline-flex; align-items: center; gap: 5px; padding: 12px 0;
+            font-size: clamp(14px, 1.15vw, 17px); white-space: nowrap;
+        }
+        .dropdown { height: 100%; display: inline-flex; align-items: center; }
+        .dropdown-content {
+            top: calc(100% - 10px); min-width: 250px; border: 1px solid #e6edf5;
+            border-radius: 16px; box-shadow: 0 18px 45px rgba(1, 23, 43, 0.18);
+        }
+        .dropdown:hover .dropdown-content, .dropdown:focus-within .dropdown-content { display: block; }
+
+        .page-hero {
+            min-height: 315px; padding: calc(var(--nav-height) + 44px) 7% 76px;
+            border-radius: 0 0 48px 48px; clip-path: none; overflow: hidden; isolation: isolate;
+            background: linear-gradient(120deg, rgba(1, 23, 43, 0.94), rgba(9, 115, 255, 0.78)),
+                        url('https://images.unsplash.com/photo-1631545806609-63c4ee6cb433?q=80&w=2070') center 45%/cover;
+        }
+        .page-hero::before, .page-hero::after {
+            content: ''; position: absolute; z-index: -1; border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.15); pointer-events: none;
+        }
+        .page-hero::before { width: 380px; height: 380px; right: -120px; top: 40px; }
+        .page-hero::after { width: 230px; height: 230px; left: -90px; bottom: -100px; }
+        .page-hero .eyebrow {
+            padding: 8px 16px; margin-bottom: 18px; color: #f8d88b;
+            background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
+        }
+        .page-hero h1 { font-size: clamp(30px, 4.4vw, 54px); line-height: 1.2; }
+        .page-hero p { font-size: clamp(14px, 1.5vw, 17px); line-height: 1.8; }
+
+        .category-heading {
+            width: min(100% - 36px, 1200px); max-width: none; margin: 46px auto 0;
+            padding: 0; color: var(--ink); font-size: clamp(25px, 3.2vw, 34px);
+            letter-spacing: -0.3px; scroll-margin-top: calc(var(--nav-height) + 18px);
+        }
+        .category-heading::after {
+            content: ''; display: block; width: 54px; height: 4px; margin: 12px auto 0;
+            border-radius: 99px; background: linear-gradient(90deg, var(--accent-blue), #62c4ff);
+        }
+        .filter-bar {
+            width: min(100% - 36px, 1200px); max-width: none; padding: 18px;
+            margin: 24px auto 0; gap: 10px; border: 1px solid #e6edf5;
+            border-radius: 20px; background: rgba(255,255,255,0.9);
+            box-shadow: 0 12px 30px rgba(16, 42, 67, 0.05);
+        }
+        .filter-pill {
+            padding: 10px 19px; color: #475569; border-color: #e2e8f0;
+            font-size: 14px; white-space: nowrap;
+        }
+        .filter-pill.active {
+            background: linear-gradient(135deg, var(--primary-blue), #174a76);
+            border-color: transparent; box-shadow: 0 6px 16px rgba(1, 23, 43, 0.18);
+        }
+        .filter-pill:focus-visible, .used-air-actions a:focus-visible, .modal-call:focus-visible {
+            outline: 3px solid rgba(9, 115, 255, 0.35); outline-offset: 3px;
+        }
+
+        .model-section {
+            width: min(100% - 36px, 1200px); max-width: none;
+            padding: 26px 0 78px;
+        }
+        .model-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 20px; }
+        .model-card {
+            display: block; appearance: none; width: 100%; padding: 0;
+            color: var(--ink); font: inherit;
+            border-color: #e8eef5; border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(16, 42, 67, 0.06);
+        }
+        .model-card:hover { transform: translateY(-5px); box-shadow: 0 18px 38px rgba(16, 42, 67, 0.12); }
+        .model-card:focus-visible { outline: 3px solid rgba(9, 115, 255, 0.35); outline-offset: 3px; }
+        .model-card-visual { height: 185px; background: linear-gradient(145deg, #f6f9fd, #eaf1f8); }
+        .model-card-visual img { object-fit: contain; padding: 14px; }
+        .model-tag { top: 12px; left: 12px; box-shadow: 0 3px 10px rgba(16, 42, 67, 0.12); }
+        .model-card-body { padding: 20px; }
+        .model-card-body h3 { min-height: 48px; margin-bottom: 12px; font-size: 17px; }
+        .model-price-from strong { margin-top: 2px; font-size: 21px; }
+
+        .used-air-section {
+            width: min(100% - 36px, 1100px); max-width: none;
+            padding: 0 0 82px; scroll-margin-top: calc(var(--nav-height) + 18px);
+        }
+        .used-air-card {
+            position: relative; overflow: hidden; padding: clamp(30px, 5vw, 56px) 24px;
+            border: 1px solid #dce8f6; border-radius: 28px;
+            background: linear-gradient(125deg, #eaf4ff 0%, #fff 58%, #eff8ff 100%);
+            box-shadow: 0 16px 42px rgba(16, 42, 67, 0.07);
+        }
+        .used-air-card > i {
+            display: grid; place-items: center; width: 68px; height: 68px; margin: 0 auto 18px;
+            border-radius: 22px; color: var(--accent-blue); background: white;
+            box-shadow: 0 8px 24px rgba(9, 115, 255, 0.12);
+        }
+        .used-air-card h2 { color: var(--ink); font-size: clamp(26px, 3vw, 34px); }
+        .used-air-card p { color: var(--muted); line-height: 1.8; }
+        .used-air-actions a { min-height: 46px; padding: 12px 22px; box-shadow: 0 6px 16px rgba(1, 23, 43, 0.12); }
+        .used-air-actions a.line-link { background: #06a94d; }
+        .used-air-actions a.line-link:hover { background: #078c42; }
+
+        .modal-overlay { padding: clamp(12px, 3vw, 24px); }
+        .modal-box { max-width: 600px; max-height: min(88vh, 900px); box-shadow: 0 25px 80px rgba(1, 23, 43, 0.28); }
+        .modal-visual { padding: 38px 24px 24px; }
+        .modal-visual h3 { font-size: clamp(19px, 3vw, 23px); }
+        .modal-body { padding: clamp(18px, 4vw, 28px); }
+        .modal-table td { padding: 13px 6px; }
+        .modal-foot p { color: var(--muted); line-height: 1.6; }
+
+        footer { margin-top: 0; padding: 64px 7% 26px; }
+        .footer-container { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 56px); }
+        .footer-info h2 { font-size: clamp(22px, 2.5vw, 28px); }
+        .footer-info p { line-height: 1.7; }
+        .map-container { height: 280px; }
+        .map-container::after { color: white; }
+        .floating-contact { right: clamp(12px, 2vw, 24px); bottom: clamp(12px, 2vw, 24px); }
+
+        @media (max-width: 1000px) {
+            .navbar { padding-inline: 24px; gap: 18px; }
+            .menu { gap: 14px; }
+            .menu > a, .menu > .dropdown > .dropbtn { font-size: 14px; }
+            .logo { font-size: 20px; }
+            .logo img { height: 46px; }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 1100px) and (min-width: 851px) {
+            :root { --nav-height: 124px; }
+            .navbar { height: auto; min-height: var(--nav-height); flex-wrap: wrap; justify-content: center; padding: 12px 24px; row-gap: 4px; }
+            .menu { width: 100%; justify-content: center; }
+            .navbar.scrolled { height: auto; }
+            .page-hero { padding-top: calc(var(--nav-height) + 36px); }
+        }
+
+        @media (max-width: 850px) {
+            .navbar, .navbar.scrolled {
+                height: auto; flex-direction: column; align-items: stretch;
+                padding: 10px 16px 8px; gap: 7px;
+            }
+            .logo { align-self: center; font-size: 19px; }
+            .logo img { height: 38px; }
+            .menu {
+                width: 100%; gap: 8px; padding: 2px 2px 8px; overflow-x: auto;
+                justify-content: flex-start; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.35) transparent;
+            }
+            .menu > a, .menu > .dropdown > .dropbtn {
+                min-height: 40px; padding: 9px 12px; border-radius: 999px;
+                background: rgba(255,255,255,0.1); font-size: 13px;
+            }
+            .menu > a:hover, .menu > .dropdown > .dropbtn:hover { background: rgba(255,255,255,0.18); }
+            .menu > .dropdown { height: auto; flex-shrink: 0; }
+            .menu > .dropdown:nth-of-type(2) .dropdown-content { display: contents; }
+            .menu > .dropdown:nth-of-type(2) .dropdown-content a {
+                min-height: 40px; margin: 0 4px 0 0; padding: 9px 12px !important;
+                border-radius: 999px !important; background: rgba(255,255,255,0.1) !important;
+                color: rgba(255,255,255,0.85) !important; font-size: 13px !important;
+            }
+            .page-hero { min-height: 280px; padding: 145px 6% 58px; border-radius: 0 0 32px 32px; }
+            .page-hero h1 { font-size: clamp(28px, 7vw, 42px); }
+            .page-hero p { max-width: 560px; }
+            .category-heading { margin-top: 36px; }
+            .filter-bar {
+                justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto;
+                padding: 12px; border-radius: 16px; scrollbar-width: thin;
+            }
+            .filter-pill { flex: 0 0 auto; padding: 9px 16px; }
+            .model-section { padding-top: 20px; padding-bottom: 58px; }
+            .model-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 16px; }
+            .model-card-visual { height: 170px; }
+            .used-air-section { padding-bottom: 58px; }
+            footer { padding: 48px 6% 24px; }
+            .footer-container { grid-template-columns: 1fr; gap: 28px; }
+            .footer-info { text-align: center; }
+            .footer-info p { justify-content: center; }
+            .map-container { height: 240px; }
+            .modal-box { max-height: 92vh; border-radius: 22px; }
+            .modal-visual { padding: 42px 18px 20px; }
+            .modal-body { padding: 18px; }
+        }
+
+        @media (max-width: 520px) {
+            .navbar, .navbar.scrolled { padding-inline: 10px; }
+            .menu { gap: 6px; }
+            .menu > a, .menu > .dropdown > .dropbtn,
+            .menu > .dropdown:nth-of-type(2) .dropdown-content a { font-size: 12px !important; }
+            .page-hero { padding-top: 139px; min-height: 270px; }
+            .page-hero .eyebrow { font-size: 12px; padding: 7px 12px; }
+            .category-heading, .filter-bar, .model-section, .used-air-section { width: calc(100% - 24px); }
+            .filter-bar { margin-top: 20px; }
+            .model-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .model-card { border-radius: 16px; }
+            .model-card-visual { height: 130px; }
+            .model-tag { top: 8px; left: 8px; padding: 4px 8px; font-size: 9px; }
+            .model-card-body { padding: 13px; }
+            .model-card-body h3 { min-height: 42px; font-size: 14px; }
+            .model-price-from { font-size: 11px; }
+            .model-price-from strong { font-size: 17px; }
+            .model-card-arrow { width: 32px; height: 32px; font-size: 12px; }
+            .used-air-card { padding: 32px 18px; border-radius: 22px; }
+            .used-air-card p { font-size: 14px; }
+            .used-air-actions { flex-direction: column; align-items: stretch; }
+            .used-air-actions a { justify-content: center; }
+            .modal-overlay { padding: 10px; }
+            .modal-box { border-radius: 18px; }
+            .modal-table td { font-size: 14px; }
+            .modal-table td.price-col { font-size: 17px; }
+            .modal-foot { justify-content: center; }
+            .modal-foot p { text-align: center; }
+            .modal-call { justify-content: center; width: 100%; }
+            .map-container { height: 200px; }
+        }
+
+        @media (max-width: 360px) {
+            .model-grid { grid-template-columns: 1fr; }
+            .model-card-visual { height: 185px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
     </style>
 </head>
 
@@ -295,7 +532,7 @@
                     <a href="service-parts.html"><i class="fas fa-box-open"></i> จำหน่ายอะไหล่</a>
                 </div>
             </div>
-            <div class="dropdown">
+            <div class="dropdown price-dropdown">
                 <a href="#new-air" class="dropbtn active">ราคาติดตั้งแอร์ <i class="fas fa-chevron-down" style="font-size: 12px; margin-left: 5px;"></i></a>
                 <div class="dropdown-content">
                     <a href="#new-air"><i class="fas fa-snowflake"></i> แอร์ใหม่</a>
@@ -339,7 +576,7 @@
 
     <!-- ================= Modal แสดงรายละเอียดราคา ================= -->
     <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-box">
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
             <div class="modal-visual" id="modalVisual">
                 <button class="modal-close" id="modalClose" aria-label="ปิด"><i class="fas fa-xmark"></i></button>
                 <span class="modal-tag" id="modalTag"></span>
@@ -555,16 +792,22 @@
         // ------- สร้างปุ่มกรองยี่ห้อ (Filter Pills) จากข้อมูลจริง -------
         function renderFilters() {
             const bar = document.getElementById('filterBar');
-            const brands = ["ทั้งหมด", ...new Set(airPriceData.map(m => m.brand))];
-            bar.innerHTML = brands.map((b, i) => `
-                <button class="filter-pill ${i === 0 ? 'active' : ''}" data-brand="${b}">${b}</button>
+            const brands = ["ทั้งหมด", ...new Set(airPriceData.map(model => model.brand))];
+
+            bar.innerHTML = brands.map((brand, index) => `
+                <button class="filter-pill ${index === 0 ? 'active' : ''}"
+                    data-brand="${brand}" aria-pressed="${index === 0}">${brand}</button>
             `).join('');
 
-            bar.querySelectorAll('.filter-pill').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    bar.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    renderGrid(btn.dataset.brand);
+            bar.querySelectorAll('.filter-pill').forEach(button => {
+                button.addEventListener('click', () => {
+                    bar.querySelectorAll('.filter-pill').forEach(pill => {
+                        pill.classList.remove('active');
+                        pill.setAttribute('aria-pressed', 'false');
+                    });
+                    button.classList.add('active');
+                    button.setAttribute('aria-pressed', 'true');
+                    renderGrid(button.dataset.brand);
                 });
             });
         }
@@ -572,41 +815,45 @@
         // ------- สร้างการ์ดรุ่นแอร์ทั้งหมด (หรือกรองตามยี่ห้อ) -------
         function renderGrid(filterBrand = "ทั้งหมด") {
             const grid = document.getElementById('modelGrid');
-            const list = filterBrand === "ทั้งหมด" ? airPriceData : airPriceData.filter(m => m.brand === filterBrand);
+            const models = filterBrand === "ทั้งหมด"
+                ? airPriceData
+                : airPriceData.filter(model => model.brand === filterBrand);
 
-            grid.innerHTML = list.map(model => {
+            grid.innerHTML = models.map(model => {
                 const meta = tagMeta[model.tag];
-                const idx = airPriceData.indexOf(model);
+                const index = airPriceData.indexOf(model);
+                const startingPrice = formatPrice(minPrice(model.sizes));
+
                 return `
-                <div class="model-card" data-index="${idx}">
+                <button type="button" class="model-card" data-index="${index}"
+                    aria-haspopup="dialog" aria-label="ดูราคา ${model.name} เริ่มต้น ${startingPrice} บาท">
                     <div class="model-card-visual">
                         <span class="model-tag" style="background:${meta.color}">${meta.label}</span>
-                        ${model.image ? `<img src="${model.image}" alt="${model.name}" loading="lazy">` : acIllustration(model.tag, 96)}
+                        ${model.image ? `<img src="${model.image}" alt="" loading="lazy">` : acIllustration(model.tag, 96)}
                     </div>
                     <div class="model-card-body">
                         <h3>${model.name}</h3>
                         <div class="model-card-meta">
-                            <div class="model-price-from">
-                                เริ่มต้น
-                                <strong>฿${formatPrice(minPrice(model.sizes))}</strong>
-                            </div>
-                            <div class="model-card-arrow"><i class="fas fa-arrow-right"></i></div>
+                            <div class="model-price-from">เริ่มต้น<strong>฿${startingPrice}</strong></div>
+                            <span class="model-card-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
                         </div>
                     </div>
-                </div>`;
+                </button>`;
             }).join('');
 
-            grid.querySelectorAll('.model-card').forEach(card => {
-                card.addEventListener('click', () => openModal(parseInt(card.dataset.index, 10)));
+            grid.querySelectorAll('.model-card').forEach(button => {
+                button.addEventListener('click', () => openModal(Number(button.dataset.index)));
             });
         }
 
         // ------- เปิด/ปิด Modal แสดงราคาแบบละเอียดของแต่ละรุ่น -------
         const overlay = document.getElementById('modalOverlay');
+        let previousFocus = null;
 
         function openModal(index) {
             const model = airPriceData[index];
             const meta = tagMeta[model.tag];
+            previousFocus = document.activeElement;
 
             document.getElementById('modalTag').textContent = meta.label;
             document.getElementById('modalTag').style.background = meta.color;
@@ -625,11 +872,13 @@
 
             overlay.classList.add('open');
             document.body.style.overflow = 'hidden';
+            document.getElementById('modalClose').focus();
         }
 
         function closeModal() {
             overlay.classList.remove('open');
             document.body.style.overflow = '';
+            if (previousFocus) previousFocus.focus();
         }
 
         document.getElementById('modalClose').addEventListener('click', closeModal);
@@ -646,13 +895,7 @@
     <script>
         window.addEventListener('scroll', function() {
             const nav = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                nav.style.height = '70px';
-                nav.style.background = 'rgba(8, 27, 58, 0.98)';
-            } else {
-                nav.style.height = '100px';
-                nav.style.background = 'rgba(15, 76, 129, 0.95)';
-            }
+            nav.classList.toggle('scrolled', window.scrollY > 50);
         });
     </script>
 
