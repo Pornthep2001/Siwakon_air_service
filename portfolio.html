@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#061b32">
+    <title>ผลงานบริการ | ศิวกรแอร์ เซอร์วิส</title>
+    <meta name="description" content="ชมผลงานล้างแอร์ งานไฟฟ้า ติดตั้งกล้องวงจรปิด ซ่อมจานดาวเทียม และติดตั้งแอร์ใหม่และมือสอง ผ่านคลิป Facebook Reels">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy: #061b32;
+            --navy-soft: #102e4c;
+            --blue: #0973ff;
+            --blue-light: #eaf4ff;
+            --gold: #e0d3ce;
+            --ink: #142b43;
+            --muted: #64748b;
+            --surface: #ffffff;
+            --page: #f4f8fc;
+            --line: #e3ebf4;
+            --shadow: 0 18px 50px rgba(10, 36, 62, .1);
+            --ease: all .28s ease;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+        body { min-width: 320px; color: var(--ink); background: var(--page); font-family: 'Prompt', sans-serif; line-height: 1.65; }
+        h1, h2, h3, .logo { font-family: 'Chakra Petch', sans-serif; }
+        a { color: inherit; }
+        .navbar {
+            position: sticky; top: 0; z-index: 20; display: flex; align-items: center;
+            justify-content: space-between; gap: 28px; min-height: 82px; padding: 10px clamp(18px, 5vw, 76px);
+            color: white; background: rgba(6, 27, 50, .96); backdrop-filter: blur(14px);
+            box-shadow: 0 8px 28px rgba(3, 17, 31, .14);
+        }
+        .logo { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; color: white; text-decoration: none; font-size: clamp(18px, 2vw, 25px); font-weight: 700; }
+        .logo img { width: auto; height: 48px; object-fit: contain; }
+        .menu { display: flex; align-items: center; gap: clamp(10px, 1.7vw, 24px); }
+        .menu > a, .menu .dropbtn { color: rgba(255,255,255,.84); text-decoration: none; font-size: clamp(13px, 1.1vw, 16px); font-weight: 500; white-space: nowrap; transition: var(--ease); }
+        .menu > a:hover, .menu .dropbtn:hover, .menu > a.active { color: var(--gold); }
+        .dropdown { position: relative; }
+        .dropdown-content { display: none; position: absolute; top: calc(100% + 14px); left: 0; min-width: 230px; padding: 8px; border: 1px solid var(--line); border-radius: 16px; background: white; box-shadow: var(--shadow); }
+        .dropdown:hover .dropdown-content, .dropdown:focus-within .dropdown-content { display: grid; }
+        .dropdown-content a { display: flex; align-items: center; gap: 11px; padding: 10px 12px; color: var(--ink); border-radius: 10px; text-decoration: none; font-size: 14px; transition: var(--ease); }
+        .dropdown-content a i { width: 18px; color: var(--blue); text-align: center; }
+        .dropdown-content a:hover { color: var(--blue); background: var(--blue-light); }
+
+        .hero { position: relative; isolation: isolate; overflow: hidden; padding: clamp(76px, 10vw, 128px) 22px clamp(86px, 11vw, 138px); color: white; text-align: center; background: radial-gradient(circle at 80% 18%, rgba(53,155,255,.3), transparent 28%), linear-gradient(130deg, #061b32, #0b3b67 62%, #1477df); }
+        main { width: min(100% - 40px, 1200px); margin: 34px auto 0; position: relative; z-index: 1; }
+        .toolbar { padding: clamp(22px, 4vw, 36px); border: 1px solid rgba(220,231,243,.9); border-radius: 24px; background: var(--surface); box-shadow: var(--shadow); }
+        .toolbar-heading { display: flex; justify-content: space-between; align-items: end; gap: 18px; margin-bottom: 20px; }
+        .toolbar-heading h2 { color: var(--navy); font-size: clamp(22px, 3vw, 29px); }
+        .toolbar-heading p { color: var(--muted); font-size: 13px; }
+        .filters { display: flex; gap: 9px; overflow-x: auto; padding: 2px 2px 8px; scrollbar-width: thin; scrollbar-color: #cbd8e7 transparent; }
+        .filter-button { flex: 0 0 auto; min-height: 42px; padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; color: #475569; background: #fff; font: 500 14px 'Prompt', sans-serif; cursor: pointer; transition: var(--ease); }
+        .filter-button:hover { border-color: #9cc8fb; color: var(--blue); }
+        .filter-button.active { color: white; border-color: var(--navy); background: var(--navy); box-shadow: 0 6px 14px rgba(6,27,50,.16); }
+            .filter-button.subcategory { border-style: dashed; background: #f8fbff; }
+            .filter-button.subcategory.active { border-style: solid; background: var(--navy); }
+        .filter-button:focus-visible, .reel-card:focus-visible, .contact-link:focus-visible { outline: 3px solid rgba(9,115,255,.4); outline-offset: 3px; }
+
+        .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 18px; margin: 48px 0 20px; }
+        .section-heading h2 { color: var(--navy); font-size: clamp(23px, 3vw, 31px); }
+        .section-heading p { color: var(--muted); font-size: 13px; }
+        .reel-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+        .reel-card { --accent: #0973ff; display: flex; position: relative; flex-direction: column; min-height: 270px; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; color: inherit; background: white; text-decoration: none; box-shadow: 0 8px 25px rgba(16,42,67,.055); transition: var(--ease); }
+        .reel-card:hover { transform: translateY(-5px); border-color: #c3dafa; box-shadow: 0 20px 40px rgba(16,42,67,.12); }
+        .reel-thumb { position: relative; display: grid; min-height: 170px; place-items: center; overflow: hidden; color: white; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 76%, #092747), color-mix(in srgb, var(--accent) 46%, #081d35)); }
+            .reel-cover { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; }
+            .reel-thumb.has-cover::before { inset: 0; width: auto; height: auto; border: 0; border-radius: 0; background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.3)); }
+            .reel-thumb.has-cover::after { display: none; }
+        .reel-thumb::before, .reel-thumb::after { content: ''; position: absolute; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; }
+        .reel-thumb::before { width: 210px; height: 210px; right: -55px; top: -105px; }
+        .reel-thumb::after { width: 140px; height: 140px; left: -40px; bottom: -90px; }
+        .play-icon { position: absolute; right: 15px; bottom: 14px; display: grid; width: 42px; height: 42px; place-items: center; border-radius: 50%; color: var(--navy); background: white; box-shadow: 0 4px 16px rgba(0,0,0,.18); transition: var(--ease); }
+        .reel-card:hover .play-icon { color: white; background: var(--blue); transform: scale(1.08); }
+        .reel-thumb-button { position: absolute; inset: 0; z-index: 2; width: 100%; border: 0; color: inherit; background: transparent; cursor: pointer; }
+        .reel-thumb-button:focus-visible { outline: 3px solid white; outline-offset: -6px; border-radius: 20px; }
+        .reel-external-link { display: inline-flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 16px; color: #1877f2; font-size: 13px; font-weight: 600; text-decoration: none; }
+        .reel-external-link:hover { color: #0b58b0; text-decoration: underline; }
+        .reel-body { display: flex; flex: 1; flex-direction: column; padding: 19px 20px 20px; }
+        .reel-category { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 9px; color: var(--accent); font-size: 12px; font-weight: 600; }
+        .reel-body h3 { margin-bottom: 7px; color: var(--navy); font-size: 18px; line-height: 1.4; }
+        .reel-body p { color: var(--muted); font-size: 13px; line-height: 1.65; }
+        .reel-link-label { display: flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 16px; color: #1877f2; font-size: 13px; font-weight: 600; }
+        .empty-state { display: none; padding: 42px 24px; border: 1px dashed #cbd9e8; border-radius: 20px; text-align: center; background: rgba(255,255,255,.72); }
+        .empty-state.visible { display: block; }
+            .pagination { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 7px; margin: 28px 0 8px; }
+            .pagination[hidden] { display: none; }
+            .page-button { display: grid; min-width: 40px; height: 40px; padding: 0 11px; place-items: center; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: #fff; font: 500 14px 'Prompt', sans-serif; cursor: pointer; transition: var(--ease); }
+            .page-button:hover:not(:disabled) { color: var(--blue); border-color: #9cc8fb; }
+            .page-button.active { color: #fff; border-color: var(--navy); background: var(--navy); }
+            .page-button:disabled { opacity: .45; cursor: not-allowed; }
+            .page-button:focus-visible { outline: 3px solid rgba(9,115,255,.4); outline-offset: 2px; }
+            .pagination-ellipsis { padding: 0 3px; color: var(--muted); }
+        .empty-state i { display: grid; width: 58px; height: 58px; margin: 0 auto 14px; place-items: center; border-radius: 18px; color: var(--blue); background: var(--blue-light); font-size: 22px; }
+        .empty-state h3 { margin-bottom: 5px; color: var(--navy); font-size: 20px; }
+        .empty-state p { color: var(--muted); font-size: 14px; }
+        .category-list { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin: 25px 0 70px; }
+        .category-chip { display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: 16px; background: white; }
+        .category-chip i { display: grid; width: 40px; height: 40px; flex: 0 0 40px; place-items: center; border-radius: 13px; color: var(--chip-accent, var(--blue)); background: color-mix(in srgb, var(--chip-accent, var(--blue)) 10%, white); }
+        .category-chip strong { display: block; color: var(--navy); font-size: 14px; }
+        .category-chip span { display: block; color: var(--muted); font-size: 11px; }
+        .contact-cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 0 0 74px; padding: clamp(24px, 4vw, 38px); border-radius: 24px; color: white; background: linear-gradient(120deg, var(--navy), #174a76); box-shadow: var(--shadow); }
+        .contact-cta h2 { margin-bottom: 5px; font-size: clamp(21px, 3vw, 27px); }
+        .contact-cta p { color: rgba(255,255,255,.75); font-size: 14px; }
+        .contact-link { display: inline-flex; align-items: center; justify-content: center; gap: 9px; flex: 0 0 auto; padding: 12px 19px; border-radius: 999px; color: white; background: #06a94d; text-decoration: none; font-size: 14px; font-weight: 600; transition: var(--ease); }
+        .contact-link:hover { background: #078c42; transform: translateY(-2px); }
+        .player-overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 16px; background: rgba(1, 13, 26, .88); opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility .2s ease; }
+        .player-overlay.open { opacity: 1; visibility: visible; }
+        .player-dialog { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; width: min(100%, 430px); max-height: 94dvh; padding: 42px 12px 14px; border: 1px solid rgba(255,255,255,.16); border-radius: 22px; background: #071727; box-shadow: 0 24px 80px rgba(0,0,0,.4); }
+        .player-close { position: absolute; top: 9px; right: 10px; z-index: 2; display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; color: white; background: rgba(255,255,255,.12); cursor: pointer; }
+        .player-close:hover { background: rgba(255,255,255,.23); }
+        .facebook-player-frame { width: min(100%, 267px); max-height: min(78dvh, 476px); aspect-ratio: 9 / 16; overflow: hidden; border-radius: 12px; background: #000; }
+        .facebook-player-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+        .player-fallback { color: white; font-size: 13px; text-decoration: none; }
+        .player-fallback:hover { text-decoration: underline; }
+        footer { padding: 24px 20px; color: #94a3b8; background: #061629; text-align: center; font-size: 12px; }
+
+        @media (max-width: 1050px) {
+            .navbar { flex-direction: column; gap: 5px; padding: 9px 18px 11px; }
+            .logo img { height: 38px; }
+            .menu { width: 100%; justify-content: center; gap: 18px; overflow-x: auto; padding: 5px 2px; scrollbar-width: none; }
+            .menu::-webkit-scrollbar { display: none; }
+            .menu > a, .menu .dropbtn { flex: 0 0 auto; font-size: 13px; }
+            .reel-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 680px) {
+            html { scroll-padding-top: 120px; }
+            .navbar { align-items: center; padding-inline: 10px; }
+            .menu { justify-content: flex-start; gap: 8px; }
+            .menu > a, .menu .dropbtn { padding: 8px 10px; border-radius: 999px; background: rgba(255,255,255,.08); font-size: 12px; }
+            .dropdown { flex: 0 0 auto; }
+            .dropdown-content { top: calc(100% + 8px); }
+            .hero { padding: 64px 18px 76px; }
+            main { width: calc(100% - 24px); margin-top: 22px; }
+            .toolbar { padding: 20px 16px 12px; border-radius: 20px; }
+            .toolbar-heading, .section-heading { align-items: flex-start; flex-direction: column; gap: 3px; }
+            .filters { margin-inline: -4px; }
+            .filter-button { font-size: 13px; }
+            .reel-grid { grid-template-columns: 1fr; gap: 14px; }
+            .reel-card { min-height: 0; }
+            .reel-thumb { min-height: 190px; }
+            .reel-body { padding: 17px; }
+            .category-list { grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 48px; }
+            .category-chip { gap: 9px; padding: 10px; }
+            .category-chip i { width: 34px; height: 34px; flex-basis: 34px; font-size: 13px; }
+            .category-chip strong { font-size: 12px; }
+            .category-chip span { font-size: 10px; }
+            .contact-cta { align-items: stretch; flex-direction: column; margin-bottom: 48px; }
+            .contact-link { width: 100%; }
+        }
+        @media (max-width: 360px) {
+            .category-list { grid-template-columns: 1fr; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" aria-label="เมนูหลัก">
+        <a href="index.html" class="logo">
+            <img src="IM/Adobe Express 2026-03-13 16.31.52.png" alt="">
+            <span>ศิวกรแอร์ เซอร์วิส</span>
+        </a>
+        <div class="menu">
+            <a href="index.html">หน้าแรก</a>
+            <div class="dropdown">
+                <a href="index.html#services" class="dropbtn">บริการ <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+                <div class="dropdown-content">
+                    <a href="service-install.html"><i class="fas fa-snowflake"></i> ติดตั้งแอร์ใหม่</a>
+                    <a href="service-clean.html"><i class="fas fa-pump-soap"></i> ล้างแอร์ฆ่าเชื้อ</a>
+                    <a href="service-repair.html"><i class="fas fa-tools"></i> ซ่อมบำรุง</a>
+                    <a href="service-electric.html"><i class="fas fa-bolt"></i> งานระบบไฟฟ้า</a>
+                    <a href="service-cctv.html"><i class="fas fa-video"></i> กล้องวงจรปิด</a>
+                    <a href="service-parts.html"><i class="fas fa-box-open"></i> อะไหล่แอร์</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="prices.html#new-air" class="dropbtn">ราคาแอร์ <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+                <div class="dropdown-content">
+                    <a href="prices.html#new-air"><i class="fas fa-snowflake"></i> แอร์ใหม่</a>
+                    <a href="prices.html#used-air"><i class="fas fa-recycle"></i> แอร์มือสอง</a>
+                </div>
+            </div>
+            <a href="portfolio.html" class="active">ผลงาน</a>
+            <a href="licenses.html">ใบอนุญาต</a>
+            <a href="contact.html">ทีมช่าง</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="toolbar" aria-labelledby="filter-title">
+            <div class="toolbar-heading">
+                <h2 id="filter-title">เลือกชมตามประเภทงาน</h2>
+                <p id="result-count" aria-live="polite"></p>
+            </div>
+            <div class="filters" id="category-filters" aria-label="กรองผลงานตามหมวดหมู่"></div>
+        </section>
+
+        <section aria-labelledby="video-heading">
+            <div class="section-heading">
+                <h2 id="video-heading">คลิปผลงาน</h2>
+                <p>กดปุ่มเล่นเพื่อดูคลิปบนเว็บไซต์ได้ทันที</p>
+            </div>
+            <div class="reel-grid" id="reel-grid"></div>
+            <nav class="pagination" id="pagination" aria-label="แบ่งหน้าผลงาน" hidden></nav>
+            <div class="empty-state" id="empty-state" role="status">
+                <i class="fas fa-link" aria-hidden="true"></i>
+                <h3>หมวดนี้ยังไม่มีลิงก์คลิป</h3>
+                <p>ส่งลิงก์ Facebook Reel มา แล้วเพิ่มลงในหมวดที่ตรงกันได้ทันที โดยไม่ต้องอัปโหลดไฟล์วิดีโอ</p>
+            </div>
+        </section>
+
+        <section aria-labelledby="categories-title">
+            <div class="section-heading">
+                <h2 id="categories-title">หมวดหมู่ผลงาน</h2>
+                <p>จัดกลุ่มคลิปให้ค้นหาได้ง่าย</p>
+            </div>
+            <div class="category-list" id="category-list"></div>
+        </section>
+
+        <section class="contact-cta">
+            <div>
+                <h2>มีคลิปผลงานที่อยากเพิ่มไหม?</h2>
+                <p>ส่งลิงก์ Facebook Reel พร้อมชื่อคลิปและหมวดงาน เพื่อเพิ่มเข้ามาในหน้านี้</p>
+            </div>
+            <a class="contact-link" href="https://lin.ee/RElZnJy" target="_blank" rel="noopener noreferrer"><i class="fab fa-line" aria-hidden="true"></i> ส่งลิงก์ผ่าน LINE</a>
+        </section>
+    </main>
+
+    <div class="player-overlay" id="player-overlay" aria-hidden="true">
+        <div class="player-dialog" role="dialog" aria-modal="true" aria-label="เล่นคลิป Facebook Reel">
+            <button class="player-close" id="player-close" type="button" aria-label="ปิดวิดีโอ"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+            <div class="facebook-player-frame">
+                <iframe id="facebook-player" title="Facebook Reel" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <a class="player-fallback" id="player-fallback" href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook" aria-hidden="true"></i> หากเล่นไม่ได้ เปิดดูบน Facebook</a>
+        </div>
+    </div>
+
+    <footer>© 2026 Siwakon Air Service | ผลงานบริการจากหน้างานจริง</footer>
+
+    <script>
+        /*
+         * วิธีเพิ่มคลิปใหม่:
+         * 1) คัดลอก object ใน portfolioVideos แล้ววางเป็นรายการใหม่ คั่นแต่ละรายการด้วยเครื่องหมาย ,
+         * 2) แก้ title และ description ให้ตรงกับคลิป
+         * 3) ใส่ category ให้ตรงกับ id ใน categories ด้านล่าง:
+         *    electrical = งานไฟฟ้า, repair-ac = ซ่อมแอร์
+         *    water-heater-install = ติดตั้งเครื่องทำน้ำอุ่น, washing-machine-repair = ซ่อมเครื่องซักผ้า
+         *    cleaning = ล้างแอร์, clean-squirrel = ล้างแบบถอดโพรงกระรอก, clean-deep = ตัดล้างใหญ่
+         *    cctv = กล้องวงจรปิด, satellite = ซ่อมจานดาวเทียม, new-ac = แอร์มือ 1, used-ac = แอร์มือ 2
+         * 4) ใส่ url เป็นลิงก์ Reel เช่น https://www.facebook.com/reel/123456789/
+         *    ถ้าได้ลิงก์แบบ /share/r/... ให้นำไปเปิด Facebook แล้วใช้ URL /reel/หมายเลข/ ที่หน้าเว็บเปลี่ยนไปให้
+         * 5) thumbnail เป็นตัวเลือก: วางภาพปก JPG ขนาดเล็กไว้ในโฟลเดอร์ IM แล้วใส่ path
+         *    เช่น "IM/ปกคลิป.jpg" ถ้าไม่ใส่ ระบบจะแสดงภาพพื้นหลังพร้อมไอคอนแทน
+         * ไม่ต้องดาวน์โหลดหรืออัปโหลดไฟล์วิดีโอ วิดีโอจะเล่นจาก Facebook โดยตรง
+         */
+        const categories = [
+            { id: "all", name: "ทั้งหมด", icon: "fa-layer-group", color: "#0973ff", description: "คลิปผลงานทุกประเภท" },
+            { id: "cleaning", name: "ล้างแอร์", icon: "fa-pump-soap", color: "#08a6a6", description: "ดูผลงานล้างแอร์ แยกตามวิธีการล้าง" },
+            { id: "clean-squirrel", name: "ล้างแบบถอดโพรงกระรอก", icon: "fa-fan", color: "#078b8b", parent: "cleaning", description: "ถอดโพรงกระรอกออกมาล้างทำความสะอาด" },
+            { id: "clean-deep", name: "ตัดล้างใหญ่", icon: "fa-soap", color: "#087373", parent: "cleaning", description: "ถอดล้างทำความสะอาดชุดใหญ่" },
+            { id: "electrical", name: "งานไฟฟ้า", icon: "fa-bolt", color: "#e5a500", description: "เดินสายและติดตั้งระบบไฟ" },
+            { id: "repair-ac", name: "ซ่อมแอร์", icon: "fa-screwdriver-wrench", color: "#e05252", description: "ตรวจเช็กและซ่อมระบบปรับอากาศ" },
+            { id: "water-heater-install", name: "ติดตั้งเครื่องทำน้ำอุ่น", icon: "fa-shower", color: "#ed7a36", description: "ติดตั้งและตรวจสอบเครื่องทำน้ำอุ่น" },
+            { id: "washing-machine-repair", name: "ซ่อมเครื่องซักผ้า", icon: "fa-shirt", color: "#5869c9", description: "ตรวจเช็กและซ่อมเครื่องซักผ้า" },
+            { id: "cctv", name: "ติดตั้งกล้องวงจรปิด", icon: "fa-video", color: "#7556d8", description: "ติดตั้งกล้องและตั้งค่าดูผ่านมือถือ" },
+            { id: "satellite", name: "ซ่อมจานดาวเทียม", icon: "fa-satellite-dish", color: "#e36537", description: "ตรวจเช็กและซ่อมระบบจานดาวเทียม" },
+            { id: "new-ac", name: "ติดตั้งแอร์มือ 1", icon: "fa-snowflake", color: "#1682e8", description: "จำหน่ายและติดตั้งเครื่องปรับอากาศใหม่" },
+            { id: "used-ac", name: "ติดตั้งแอร์มือ 2", icon: "fa-recycle", color: "#3b9b66", description: "แอร์มือสองพร้อมบริการติดตั้ง" }
+        ];
+        const portfolioVideos = [
+            // เพิ่มรายการ Reel ใหม่ตรงนี้ ตัวอย่างโครงสร้าง:
+            // { title: "ล้างแอร์บ้านลูกค้า", description: "ล้างแอร์ 2 เครื่อง", category: "cleaning", thumbnail: "IM/cleaning-cover.jpg", url: "https://www.facebook.com/reel/123456789/" },
+            {
+                title: "ติดตั้งหลอดไฟตู้โชว์สินค้า",
+                description: "ติดตั้งหลอดไฟและเก็บงานระบบไฟในตู้โชว์สินค้า",
+                category: "electrical",
+                thumbnail: "IM/portfolio-electrical-1740865397147106.jpg",
+                url: "https://www.facebook.com/reel/1740865397147106/"
+            },
+            {
+                title: "ซ่อมมอเตอร์ประตูม้วน",
+                description: "ตรวจเช็กและแก้ไขมอเตอร์ประตูม้วนที่เสียหาย",
+                category: "electrical",
+                thumbnail: "IM/portfolio-electrical-896087510107753.jpg",
+                url: "https://www.facebook.com/reel/896087510107753/"
+            },
+            {
+                title: "แก้ไขระบบไฟฟ้าจุดช็อต",
+                description: "ตรวจเช็กระบบไฟและแก้ไขจุดช็อตหน้างาน",
+                category: "electrical",
+                thumbnail: "IM/portfolio-electric-cover.jpg",
+                url: "https://www.facebook.com/reel/856917827443113/"
+            },
+            {
+                title: "ติดตั้งแอร์ที่ลูกค้ามีเครื่องอยู่แล้ว",
+                description: "ติดตั้งและตรวจสอบการทำงานของเครื่องปรับอากาศตามมาตรฐาน",
+                category: "new-ac",
+                thumbnail: "IM/portfolio-new-ac-2532571653906321.jpg",
+                url: "https://www.facebook.com/reel/2532571653906321/"
+            },
+            {
+                title: "ติดตั้ง Haier Inverter 12,000 BTU",
+                description: "ส่งมอบงานติดตั้งแอร์ Haier Inverter ให้ลูกค้าคลินิก",
+                category: "new-ac",
+                thumbnail: "IM/portfolio-new-ac-1435892255154443.jpg",
+                url: "https://www.facebook.com/reel/1435892255154443/"
+            },
+            {
+                title: "ล้างแอร์ร้านเสริมสวย",
+                description: "บริการล้างแอร์แบบติดผนัง พร้อมตรวจเช็กการทำงาน",
+                category: "cleaning",
+                thumbnail: "IM/portfolio-cleaning-5604966006394308.jpg",
+                url: "https://www.facebook.com/reel/5604966006394308/"
+            },
+            {
+                title: "ล้างแอร์ 2 เครื่องและซ่อมเครื่องทำน้ำอุ่น",
+                description: "ดูแลงานล้างแอร์พร้อมซ่อมเครื่องทำน้ำอุ่นในหน้างานเดียว",
+                category: "cleaning",
+                thumbnail: "IM/portfolio-cleaning-1116700914351372.jpg",
+                url: "https://www.facebook.com/reel/1116700914351372/"
+            },
+            {
+                title: "ล้างแอร์บ้านหนองน้ำเขียว",
+                description: "ล้างแอร์แบบติดผนัง 1 เครื่อง พร้อมตรวจสอบหลังบริการ",
+                category: "cleaning",
+                thumbnail: "IM/portfolio-cleaning-1613636833741763.jpg",
+                url: "https://www.facebook.com/reel/1613636833741763/"
+            },
+            {
+                title: "ล้างแอร์บ้านท่าแรต",
+                description: "ส่งมอบงานล้างแอร์แบบติดผนัง 2 เครื่อง",
+                category: "cleaning",
+                thumbnail: "IM/portfolio-cleaning-1859433691693108.jpg",
+                url: "https://www.facebook.com/reel/1859433691693108/"
+            },
+            {
+                title: "ล้างแอร์คลองน้ำโจน",
+                description: "บริการล้างแอร์แบบติดผนัง 2 เครื่องให้ลูกค้า",
+                category: "cleaning",
+                thumbnail: "IM/portfolio-cleaning-880907654989282.jpg",
+                url: "https://www.facebook.com/reel/880907654989282/"
+            }
+        ];
+
+        const filterContainer = document.getElementById("category-filters");
+        const reelGrid = document.getElementById("reel-grid");
+        const emptyState = document.getElementById("empty-state");
+        const resultCount = document.getElementById("result-count");
+        let activeCategory = "all";
+        let currentPage = 1;
+        const pageSize = 12;
+
+        function renderCategories() {
+            filterContainer.innerHTML = categories.map((category, index) => `
+                <button class="filter-button ${category.parent ? "subcategory" : ""} ${index === 0 ? "active" : ""}" type="button"
+                    data-category="${category.id}" aria-pressed="${index === 0}">
+                    ${category.id === "all" ? "" : `<i class="fas ${category.icon}" aria-hidden="true"></i> `}${category.name}
+                </button>
+            `).join("");
+
+            document.getElementById("category-list").innerHTML = categories.filter(category => category.id !== "all").map(category => {
+                const count = portfolioVideos.filter(video => video.url && (
+                    video.category === category.id ||
+                    (category.id === "cleaning" && video.category.startsWith("clean-"))
+                )).length;
+                return `
+                    <div class="category-chip" style="--chip-accent:${category.color}">
+                        <i class="fas ${category.icon}" aria-hidden="true"></i>
+                        <div><strong>${category.name}</strong><span>${count ? `${count} คลิป` : "รอเพิ่มคลิป Reels"}</span></div>
+                    </div>
+                `;
+            }).join("");
+
+            filterContainer.querySelectorAll(".filter-button").forEach(button => {
+                button.addEventListener("click", () => {
+                    activeCategory = button.dataset.category;
+                    currentPage = 1;
+                    filterContainer.querySelectorAll(".filter-button").forEach(item => {
+                        const selected = item === button;
+                        item.classList.toggle("active", selected);
+                        item.setAttribute("aria-pressed", String(selected));
+                    });
+                    renderVideos();
+                });
+            });
+        }
+
+        function renderVideos() {
+            const visibleVideos = portfolioVideos.filter(video =>
+                video.url && (
+                    activeCategory === "all" ||
+                    video.category === activeCategory ||
+                    (activeCategory === "cleaning" && video.category.startsWith("clean-"))
+                )
+            );
+
+            const totalPages = Math.max(1, Math.ceil(visibleVideos.length / pageSize));
+            currentPage = Math.min(currentPage, totalPages);
+            const startIndex = (currentPage - 1) * pageSize;
+            const pageVideos = visibleVideos.slice(startIndex, startIndex + pageSize);
+
+            resultCount.textContent = `${visibleVideos.length} คลิป${totalPages > 1 ? ` · หน้า ${currentPage}/${totalPages}` : ""}`;
+            emptyState.classList.toggle("visible", visibleVideos.length === 0);
+            reelGrid.innerHTML = pageVideos.map(video => {
+                const category = categories.find(item => item.id === video.category);
+                if (!category) return "";
+                const videoIndex = portfolioVideos.indexOf(video);
+                return `
+                    <article class="reel-card" style="--accent:${category.color}">
+                        <div class="reel-thumb ${video.thumbnail ? "has-cover" : ""}">
+                            ${video.thumbnail ? `<img class="reel-cover" src="${video.thumbnail}" alt="ภาพหน้าปกคลิป ${video.title}" loading="lazy">` : ""}
+                            <span class="play-icon"><i class="fas fa-play" aria-hidden="true"></i></span>
+                            <button class="reel-thumb-button" type="button" data-video-index="${videoIndex}" aria-label="เล่นคลิป ${video.title} บนเว็บไซต์"></button>
+                        </div>
+                        <div class="reel-body">
+                            <span class="reel-category"><i class="fas ${category.icon}" aria-hidden="true"></i>${category.name}</span>
+                            <h3>${video.title}</h3>
+                            <p>${video.description || "ชมขั้นตอนและผลงานจริงจากทีมช่างศิวกรแอร์ เซอร์วิส"}</p>
+                            <a class="reel-external-link" href="${video.url}" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook" aria-hidden="true"></i> เปิดบน Facebook <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                        </div>
+                    </article>
+                `;
+            }).join("");
+
+            reelGrid.querySelectorAll(".reel-thumb-button").forEach(button => {
+                button.addEventListener("click", () => playVideo(Number(button.dataset.videoIndex)));
+            });
+
+            renderPagination(totalPages);
+        }
+
+        function renderPagination(totalPages) {
+            const pagination = document.getElementById("pagination");
+            if (totalPages <= 1) {
+                pagination.innerHTML = "";
+                pagination.hidden = true;
+                return;
+            }
+
+            pagination.hidden = false;
+            const visiblePages = [...new Set([
+                1,
+                totalPages,
+                ...Array.from({ length: 5 }, (_, index) => currentPage - 2 + index)
+            ])].filter(page => page >= 1 && page <= totalPages).sort((a, b) => a - b);
+
+            let previousPage = 0;
+            const pageButtons = visiblePages.map(page => {
+                const gap = page - previousPage;
+                const separator = gap > 1 ? '<span class="pagination-ellipsis" aria-hidden="true">…</span>' : "";
+                previousPage = page;
+                return `${separator}<button class="page-button ${page === currentPage ? "active" : ""}"
+                    type="button" data-page="${page}" ${page === currentPage ? 'aria-current="page"' : ""}
+                    aria-label="หน้า ${page}">${page}</button>`;
+            }).join("");
+
+            pagination.innerHTML = `
+                <button class="page-button" type="button" data-page-step="-1"
+                    aria-label="หน้าก่อนหน้า" ${currentPage === 1 ? "disabled" : ""}>
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                ${pageButtons}
+                <button class="page-button" type="button" data-page-step="1"
+                    aria-label="หน้าถัดไป" ${currentPage === totalPages ? "disabled" : ""}>
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            `;
+
+            pagination.querySelectorAll("button[data-page], button[data-page-step]").forEach(button => {
+                if (button.disabled) return;
+                button.addEventListener("click", () => {
+                    currentPage = button.dataset.page
+                        ? Number(button.dataset.page)
+                        : currentPage + Number(button.dataset.pageStep);
+                    renderVideos();
+                    document.getElementById("video-heading").scrollIntoView({ block: "start" });
+                });
+            });
+        }
+
+        const playerOverlay = document.getElementById("player-overlay");
+        const facebookPlayer = document.getElementById("facebook-player");
+        const playerFallback = document.getElementById("player-fallback");
+        let previousFocus = null;
+
+        function playVideo(index) {
+            const video = portfolioVideos[index];
+            if (!video || !video.url) return;
+
+            previousFocus = document.activeElement;
+            playerFallback.href = video.url;
+            facebookPlayer.src = `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(video.url)}&show_text=false&width=267&height=476`;
+            playerOverlay.classList.add("open");
+            playerOverlay.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+            document.getElementById("player-close").focus();
+        }
+
+        function closeVideo() {
+            playerOverlay.classList.remove("open");
+            playerOverlay.setAttribute("aria-hidden", "true");
+            facebookPlayer.src = "about:blank";
+            document.body.style.overflow = "";
+            if (previousFocus) previousFocus.focus();
+        }
+
+        document.getElementById("player-close").addEventListener("click", closeVideo);
+        playerOverlay.addEventListener("click", event => {
+            if (event.target === playerOverlay) closeVideo();
+        });
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && playerOverlay.classList.contains("open")) closeVideo();
+        });
+
+        renderCategories();
+        renderVideos();
+    </script>
+</body>
+</html>
