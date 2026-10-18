@@ -106,8 +106,9 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 450px));
             gap: 35px;
+            justify-content: center;
         }
 
         /* การ์ดพนักงาน */
@@ -144,8 +145,9 @@
 
         /* รูปพนักงาน */
         .staff-img-box { width: 100%; height: 320px; overflow: hidden; background: #eee; }
-        .staff-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s ease; }
-        .staff-card:hover .staff-img-box img { transform: scale(1.08); }
+        .staff-img-box { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background: #eef2f6; }
+        .staff-img-box img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .intern-card .staff-img-box { aspect-ratio: 4 / 3; }
 
         .staff-info { padding: 25px; }
         .staff-info h3 { color: var(--primary-dark); font-size: 20px; margin-bottom: 5px; }
@@ -226,8 +228,6 @@
 
     <header class="team-header">
         <i class="fas fa-users-cog" style="font-size: 50px; color: var(--accent-blue); margin-bottom: 20px;"></i>
-        <h1>Professional Service Team</h1>
-        <p>ทีมงานคุณภาพที่ผ่านการคัดสรรและฝึกอบรมอย่างดี เพื่อความพึงพอใจสูงสุดของลูกค้า</p>
     </header>
 
     <main class="container">
@@ -248,38 +248,25 @@
 
             <div class="staff-card">
                 <div class="staff-img-box">
-                    <img src="https://images.unsplash.com/photo-1621905252507-b354bc2d1854?q=80&w=2070" alt="ช่างเอนก">
+                    <img src="IM/ปฏิภาณ วิไลวรรณ.png" alt="ปฏิภาณ วิไลวรรณ" loading="lazy">
                 </div>
                 <div class="staff-info">
-                    <h3>ช่างเอนก</h3>
-                    <span>Senior Technician</span>
-                    <p style="font-size: 13px; color: #888; margin-bottom: 15px;">เชี่ยวชาญงานซ่อมบอร์ดและระบบ Inverter</p>
-                    <p style="font-size: 13px; color: #888; margin-bottom: 15px;">เชี่ยวชาญงานซ่อมบอร์ดและระบบ Inverter</p>
+                    <h3>นายปฏิภาณ วิไลวรรณ</h3>
+                    <span>อายุ 21 ปี</span>
                 </div>
             </div>
 
             <div class="staff-card">
                 <div class="staff-img-box">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974" alt="ช่างมานะ">
+                    <img src="IM/ธนพนธ์ พรมดีมา.png" alt="ธนพนธ์ พรมดีมา" loading="lazy">
                 </div>
                 <div class="staff-info">
-                    <h3>ช่างมานะ</h3>
-                    <span>Assistant Leader</span>
-                    <p style="font-size: 13px; color: #888; margin-bottom: 15px;">ผู้ช่วยหัวหน้าทีม แม่นยำงานติดตั้งระบบไฟฟ้า</p>
-                    <p style="font-size: 13px; color: #888; margin-bottom: 15px;">ผู้ช่วยหัวหน้าทีม แม่นยำงานติดตั้งระบบไฟฟ้า</p>
+                    <h3>นายธนพนธ์ พรมดีมา</h3>
+                    <span>อายุ 23 ปี</span>
                 </div>
             </div>
 
             <div class="staff-card">
-                <div class="staff-img-box">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974" alt="ช่างสมชาย">
-                </div>
-                <div class="staff-info">
-                    <h3>ช่างสมชาย</h3>
-                    <span>Service specialist</span>
-                    <p style="font-size: 13px; color: #888; margin-bottom: 15px;">ผู้เชี่ยวชาญงานล้างและทำความสะอาดฆ่าเชื้อ</p>
-                </div>
-            </div>
         </div>
     </main>
 
