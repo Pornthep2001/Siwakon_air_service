@@ -7,6 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="portfolio-showcase.css">
 
     <style>
         /* ================= ตัวแปรสีควบคุมธีม ================= */
@@ -104,31 +105,7 @@
         .problem-list li i { color: var(--repair-red); font-size: 20px; }
 
         /* ================= ตารางมาตรฐานงานซ่อม ================= */
-        .standard-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; margin-bottom: 80px;
-        }
-        .standard-card {
-            background: white; padding: 40px; border-radius: 25px;
-            text-align: center; transition: var(--transition); border: 1px solid #eee;
-        }
-        .standard-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .standard-card i { font-size: 45px; color: var(--accent-blue); margin-bottom: 20px; display: block; }
-
         /* ================= ส่วนโทรเรียกช่าง (CTA) ================= */
-        .cta-box {
-            background: var(--primary-dark); padding: 60px 20px;
-            border-radius: 30px; text-align: center; color: white;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
-        }
-        .btn-repair-now {
-            display: inline-flex; align-items: center; gap: 12px;
-            padding: 18px 45px; background: var(--repair-red);
-            color: white; text-decoration: none; border-radius: 50px;
-            font-weight: 700; font-size: 19px; transition: var(--transition);
-        }
-        .btn-repair-now:hover { transform: scale(1.05); background: white; color: var(--primary-dark); }
-
         /* ================= Responsive ปรับแต่ง iPhone 11 ================= */
         @media (max-width: 992px) {
             .nav-logo span { display: none; } /* ซ่อนชื่อร้านในมือถือเพื่อให้ Navbar คลีน */
@@ -202,39 +179,23 @@
                 <img src="IM/17552258029.jpg" alt="งานซ่อมแอร์">
             </div>
         </section>
-
-        <h2 style="text-align: center; margin-bottom: 40px; color: var(--primary-dark);">ทำไมลูกค้าเลือกซ่อมกับเรา?</h2>
-        <section class="standard-grid">
-            <div class="standard-card">
-                <i class="fas fa-stethoscope"></i>
-                <h3>วิเคราะห์แม่นยำ</h3>
-                <p>ใช้เครื่องมือวัดระบบดิจิทัล แจ้งอาการเสียและประเมินราคาก่อนเริ่มงานชัดเจน</p>
+        <section class="service-reels" data-portfolio-categories="repair-ac">
+            <div class="service-reels-heading">
+                <h2>คลิปผลงานซ่อมแอร์</h2>
+                <p>กดปุ่มเล่นเพื่อรับชมผลงานจากหน้างานจริง</p>
             </div>
-            <div class="standard-card">
-                <i class="fas fa-box-open"></i>
-                <h3>อะไหล่แท้แน่นอน</h3>
-                <p>เปลี่ยนอะไหล่ที่ตรงรุ่นและเป็นของแท้เท่านั้น เพื่อป้องกันปัญหาเดิมซ้ำซาก</p>
-            </div>
-            <div class="standard-card">
-                <i class="fas fa-user-shield"></i>
-                <h3>รับประกันงานซ่อม</h3>
-                <p>มีความรับผิดชอบหลังการขาย รับประกันทั้งงานซ่อมและอะไหล่ตามเงื่อนไข</p>
-            </div>
+            <div class="service-reel-grid"></div>
         </section>
 
         <section class="cta-box">
-            <h2>แอร์เสีย.. อย่าปล่อยไว้นาน!</h2>
-            <p style="margin-bottom: 25px;">บริการถึงหน้าบ้าน รวดเร็ว ทันใจ ในราคาที่ยุติธรรม</p>
-            <a href="tel:0631688547" class="btn-repair-now">
-                <i class="fas fa-tools"></i> โทรเรียกช่างด่วน
-            </a>
-        </section>
-
     </main>
 
     <footer style="text-align: center; padding: 40px; color: #999; font-size: 14px;">
         © 2026 Siwakon Air Service | Express Air Repair Specialists
     </footer>
+
+    <script src="portfolio-data.js"></script>
+    <script src="portfolio-showcase.js"></script>
 
 </body>
 </html>

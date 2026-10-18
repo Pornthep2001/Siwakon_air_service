@@ -7,6 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="portfolio-showcase.css">
 
     <style>
         /* ================= ตัวแปรสีเน้นความหลากหลาย (Parts Theme Variables) ================= */
@@ -106,17 +107,6 @@
         .parts-list li i { color: var(--parts-orange); font-size: 20px; }
 
         /* ================= หมวดหมู่สินค้า (Grid Cards) ================= */
-        .parts-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; margin-bottom: 80px;
-        }
-        .parts-card {
-            background: white; padding: 35px; border-radius: 20px;
-            text-align: center; transition: var(--transition); border: 1px solid #eee;
-        }
-        .parts-card:hover { transform: translateY(-10px); border-color: var(--parts-orange); box-shadow: 0 15px 30px rgba(243,112,33,0.1); }
-        .parts-card i { font-size: 45px; color: var(--parts-orange); margin-bottom: 20px; display: block; }
-
         /* ================= ส่วนติดต่อโทร (CTA) ================= */
         .cta-box {
             background: var(--primary-dark); padding: 60px 20px;
@@ -204,39 +194,12 @@
                 <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070" alt="คลังอะไหล่แอร์">
             </div>
         </section>
-
-        <h2 style="text-align: center; margin-bottom: 40px; color: var(--primary-dark);">หมวดหมู่ที่เราจำหน่าย</h2>
-        <section class="parts-grid">
-            <div class="parts-card">
-                <i class="fas fa-fan"></i>
-                <h3>มอเตอร์พัดลม</h3>
-                <p>มอเตอร์คอยล์เย็นและคอยล์ร้อน ทุุกขนาด ทุุกรุ่น</p>
+        <section class="service-reels" data-portfolio-categories="parts">
+            <div class="service-reels-heading">
+                <h2>คลิปผลงานอะไหล่แอร์</h2>
+                <p>กดปุ่มเล่นเพื่อรับชมผลงานจากหน้างานจริง</p>
             </div>
-            <div class="parts-card">
-                <i class="fas fa-microchip"></i>
-                <h3>แผงวงจรควบคุม</h3>
-                <p>บอร์ดควบคุมอัจฉริยะ สำหรับระบบธรรมดาและ Inverter</p>
-            </div>
-            <div class="parts-card">
-                <i class="fas fa-compress-alt"></i>
-                <h3>คอมเพรสเซอร์</h3>
-                <p>หัวใจหลักของแอร์ มีให้เลือกครบทุกยี่ห้อชั้นนำ</p>
-            </div>
-            <div class="parts-card">
-                <i class="fas fa-remote-control"></i>
-                <h3>รีโมทแอร์</h3>
-                <p>รีโมทแท้ตรงรุ่น และรีโมทแบบรวมรุ่นคุณภาพสูง</p>
-            </div>
-            <div class="parts-card">
-                <i class="fas fa-wind"></i>
-                <h3>แผ่นกรองอากาศ</h3>
-                <p>ฟิลเตอร์ดักจับฝุ่นและกำจัดกลิ่นตรงรุ่น</p>
-            </div>
-            <div class="parts-card">
-                <i class="fas fa-tools"></i>
-                <h3>อุปกรณ์ติดตั้ง</h3>
-                <p>ขาแขวน, รางครอบท่อ และวัสดุสิ้นเปลืองคุณภาพ</p>
-            </div>
+            <div class="service-reel-grid"></div>
         </section>
 
         <section class="cta-box">
@@ -252,6 +215,9 @@
     <footer style="text-align: center; padding: 40px; color: #999; font-size: 14px;">
         © 2026 Siwakon Air Service | Authorized Parts Dealer
     </footer>
+
+    <script src="portfolio-data.js"></script>
+    <script src="portfolio-showcase.js"></script>
 
 </body>
 </html>

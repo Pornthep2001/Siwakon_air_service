@@ -7,6 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="portfolio-showcase.css">
 
     <style>
         /* ================= ตัวแปรสีและค่าคงที่ (Theme Variables) ================= */
@@ -105,17 +106,6 @@
         .cctv-features li i { color: var(--cctv-blue); font-size: 20px; }
 
         /* ================= ส่วนแสดงเทคโนโลยี (Grid Cards) ================= */
-        .type-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; margin-top: 40px; margin-bottom: 80px;
-        }
-        .type-card {
-            background: white; padding: 40px; border-radius: 25px;
-            border-bottom: 4px solid var(--cctv-blue); transition: var(--transition);
-        }
-        .type-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .type-card i { font-size: 45px; color: var(--cctv-blue); margin-bottom: 20px; display: block; }
-
         /* ================= กล่องติดต่อสอบถาม (CTA) ================= */
         .contact-box {
             background: var(--primary-dark); padding: 60px 20px;
@@ -202,24 +192,12 @@
                 <img src="https://images.unsplash.com/photo-1557597774-9d2739f85a94?q=80&w=2068" alt="CCTV System">
             </div>
         </section>
-
-        <h2 style="text-align: center; color: var(--primary-dark);">เทคโนโลยีที่เราเลือกใช้</h2>
-        <section class="type-grid">
-            <div class="type-card">
-                <i class="fas fa-video"></i>
-                <h3>IP Camera System</h3>
-                <p>ระบบกล้องดิจิทัลความละเอียดสูง เชื่อมต่อผ่านโครงข่ายเน็ตเวิร์คที่เสถียรที่สุด</p>
+        <section class="service-reels" data-portfolio-categories="cctv">
+            <div class="service-reels-heading">
+                <h2>คลิปผลงานติดตั้งกล้องวงจรปิด</h2>
+                <p>กดปุ่มเล่นเพื่อรับชมผลงานจากหน้างานจริง</p>
             </div>
-            <div class="type-card">
-                <i class="fas fa-eye"></i>
-                <h3>Full Color Night Vision</h3>
-                <p>เทคโนโลยีมองเห็นภาพสีในเวลากลางคืน แม้ในที่มืดสนิท ช่วยระบุหลักฐานได้ชัดเจน</p>
-            </div>
-            <div class="type-card">
-                <i class="fas fa-network-wired"></i>
-                <h3>Analog HD System</h3>
-                <p>ระบบมาตรฐานที่คุ้มค่า แข็งแรงทนทาน เหมาะสำหรับบ้านพักอาศัยและอาคารทั่วไป</p>
-            </div>
+            <div class="service-reel-grid"></div>
         </section>
 
         <section class="contact-box">
@@ -235,6 +213,9 @@
     <footer style="text-align: center; padding: 40px; color: #999; font-size: 14px;">
         © 2026 Siwakon Air Service | Security Systems Specialist
     </footer>
+
+    <script src="portfolio-data.js"></script>
+    <script src="portfolio-showcase.js"></script>
 
 </body>
 </html>

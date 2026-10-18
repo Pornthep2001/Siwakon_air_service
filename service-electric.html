@@ -7,6 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="portfolio-showcase.css">
 
     <style>
         /* ================= ตัวแปรสีเน้นความปลอดภัย (Theme Variables) ================= */
@@ -104,16 +105,6 @@
         .electric-list li i { color: var(--electric-yellow); font-size: 20px; }
 
         /* ================= บล็อกเหตุผลความปลอดภัย ================= */
-        .safety-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; margin-bottom: 80px;
-        }
-        .safety-card {
-            background: white; padding: 40px; border-radius: 20px;
-            transition: var(--transition); border-left: 5px solid var(--electric-yellow);
-        }
-        .safety-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
-
         /* ================= ส่วนโทรติดต่อ (CTA) ================= */
         .cta-box {
             background: var(--electric-yellow); padding: 50px 20px;
@@ -199,24 +190,12 @@
                 <img src="IM/1755230005166.jpg" alt="งานระบบไฟฟ้า">
             </div>
         </section>
-
-        <h2 style="text-align: center; margin-bottom: 40px; color: var(--primary-dark);">ทำไมต้องเลือกช่างไฟฟ้าของเรา?</h2>
-        <section class="safety-grid">
-            <div class="safety-card">
-                <i class="fas fa-user-check"></i>
-                <h3>ช่างมีใบอนุญาต</h3>
-                <p>ทีมงานผ่านการทดสอบมาตรฐานฝีมือแรงงานแห่งชาติ รับประกันความถูกต้องตามหลักวิศวกรรม</p>
+        <section class="service-reels" data-portfolio-categories="electrical">
+            <div class="service-reels-heading">
+                <h2>คลิปผลงานงานไฟฟ้า</h2>
+                <p>กดปุ่มเล่นเพื่อรับชมผลงานจากหน้างานจริง</p>
             </div>
-            <div class="safety-card">
-                <i class="fas fa-tools"></i>
-                <h3>อุปกรณ์ มอก.</h3>
-                <p>เราเลือกใช้สายไฟและอุปกรณ์ที่มีเครื่องหมายมาตรฐานอุตสาหกรรม (มอก.) เท่านั้น</p>
-            </div>
-            <div class="safety-card">
-                <i class="fas fa-search-plus"></i>
-                <h3>ตรวจเช็คละเอียด</h3>
-                <p>ตรวจสอบกระแสไฟและแรงดันทุกจุดด้วยเครื่องมือที่ทันสมัยก่อนส่งมอบงาน</p>
-            </div>
+            <div class="service-reel-grid"></div>
         </section>
 
         <section class="cta-box">
@@ -232,6 +211,9 @@
     <footer style="text-align: center; padding: 40px; color: #aaa; font-size: 14px;">
         © 2026 Siwakon Air Service | Electrical Systems & Safety Specialist
     </footer>
+
+    <script src="portfolio-data.js"></script>
+    <script src="portfolio-showcase.js"></script>
 
 </body>
 </html>
