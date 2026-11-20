@@ -12,72 +12,84 @@ window.portfolioVideos = [
         title: "บริการล้างแอร์ ซ่อมแอร์ และติดตั้งแอร์",
         description: "ชมบริการล้างแอร์ ซ่อมแอร์ ติดตั้งแอร์และงานบริการครบวงจรจากหน้างานจริง",
         category: "cleaning",
+        thumbnail: "IM/portfolio-reel-1745059369847486.jpg",
         url: "https://www.facebook.com/reel/1745059369847486/"
     },
     {
         title: "ล้างแอร์สะอาดกรับพร้อมลงน้ำยาดันฝุ่นฆ่าเชื้อ",
         description: "ล้างแอร์สะอาด พร้อมลงน้ำยาดันฝุ่นและฆ่าเชื้อโรค",
         category: "cleaning",
+        thumbnail: "IM/portfolio-reel-1026026723365520.jpg",
         url: "https://www.facebook.com/reel/1026026723365520/"
     },
     {
         title: "ซ่อมแอร์ 4 ทิศทาง",
         description: "ตรวจเช็กและซ่อมแอร์ 4 ทิศทางถึงที่หน้างาน",
         category: "repair-ac",
+        thumbnail: "IM/portfolio-reel-1976115649730743.jpg",
         url: "https://www.facebook.com/reel/1976115649730743/"
     },
     {
         title: "ล้างแอร์พร้อมลงน้ำยาดันฝุ่นฆ่าเชื้อ",
         description: "ส่งมอบงานล้างแอร์และลงน้ำยาดันฝุ่นฆ่าเชื้อครบชุด",
         category: "cleaning",
+        thumbnail: "IM/portfolio-reel-1939041736806594.jpg",
         url: "https://www.facebook.com/reel/1939041736806594/"
     },
     {
         title: "ล้างแอร์ 2 ชุดพร้อมลงน้ำยาดันฝุ่นฆ่าเชื้อ",
         description: "ล้างแอร์สะอาดพร้อมลงน้ำยาดันฝุ่นฆ่าเชื้อ 2 ชุด",
         category: "cleaning",
+        thumbnail: "IM/portfolio-reel-1586217226172528.jpg",
         url: "https://www.facebook.com/reel/1586217226172528/"
     },
     {
         title: "ล้างแอร์พร้อมลงน้ำยาดันฝุ่นฆ่าเชื้อ 1 ชุด",
         description: "ล้างแอร์และลงน้ำยาดันฝุ่นฆ่าเชื้อในหน้างาน",
         category: "cleaning",
+        thumbnail: "IM/portfolio-reel-2077640959847402.jpg",
         url: "https://www.facebook.com/reel/2077640959847402/"
     },
     {
         title: "บริการล้างแอร์ ซ่อมแอร์ และติดตั้งแอร์",
         description: "รวมผลงานบริการล้างแอร์ ซ่อมแอร์ เติมน้ำยา ติดตั้งแอร์ และย้ายแอร์",
         category: "cleaning",
+        thumbnail: "IM/portfolio-reel-1320498083583189.jpg",
         url: "https://www.facebook.com/reel/1320498083583189/"
     },
     {
         title: "ติดตั้งเครื่องทำน้ำอุ่นเรียบร้อย",
         description: "ส่งมอบงานติดตั้งและตรวจสอบเครื่องทำน้ำอุ่น",
         category: "water-heater-install",
+        thumbnail: "IM/portfolio-reel-952859721158585.jpg",
         url: "https://www.facebook.com/reel/952859721158585/"
     },
     {
         title: "ส่งมอบงานแก้ไขเรียบร้อย",
         description: "ตรวจเช็กและส่งมอบงานแก้ไขระบบครบถ้วน",
         category: "repair-ac",
+        thumbnail: "IM/portfolio-reel-1371198541005785.jpg",
         url: "https://www.facebook.com/reel/1371198541005785/"
     },
     {
         title: "ผลงานบริการล้างแอร์และซ่อมแอร์",
         description: "รวมบริการล้างแอร์ ซ่อมแอร์ และติดตั้งเครื่องปรับอากาศ",
         category: "cleaning",
+        thumbnail: "IM/portfolio-reel-850147598181875.jpg",
         url: "https://www.facebook.com/reel/850147598181875/"
     },
     {
         title: "ล้างแอร์แขวน 4 เครื่องและแอร์ฝังผนัง 1 เครื่อง",
         description: "ส่งมอบงานล้างแอร์แขวนและแอร์ฝังผนังเรียบร้อย",
         category: "cleaning",
+        thumbnail: "IM/portfolio-reel-1757835162334218.jpg",
         url: "https://www.facebook.com/reel/1757835162334218/"
     },
     {
         title: "ล้างแอร์พร้อมลงน้ำยาดันฝุ่นฆ่าเชื้อ 2 ชุด",
         description: "ล้างแอร์สะอาดพร้อมลงน้ำยาดันฝุ่นฆ่าเชื้อ 2 ชุด",
         category: "cleaning",
+        thumbnail: "IM/portfolio-reel-1075108055175542.jpg",
         url: "https://www.facebook.com/reel/1075108055175542/"
     },
     {
